@@ -1,0 +1,18 @@
+﻿<Window x:Class="Bierbank.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bierbank.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <DockPanel>
+        <ToolBar Background="{DynamicResource ToolBarKleur}" DockPanel.Dock="Top">
+            <Label FontSize="20" Margin="8" Padding="8" Foreground="{DynamicResource LetterKleur}" Content="Bierbank"/>
+            <Button Name="KnopToevoegen" Content="Bier toevoegen" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
+        </ToolBar>
+
+        <Frame Source="BierenOverzicht.xaml" Name="frame" NavigationUIVisibility="Hidden" >
+        </Frame>
+    </DockPanel>
+</Window>
