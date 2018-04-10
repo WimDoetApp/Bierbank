@@ -28,30 +28,7 @@ namespace Bierbank.View
 
         private void KnopToevoegen_Click(object sender, RoutedEventArgs e)
         {
-            double percentage;
-
-            //waarden opvragen
-            string naam = textBoxNaam.Text;
-            string soort = textBoxSoort.Text;
-            string percentageInvoer = textBoxPercentage.Text;
-            string brouwerij = textBoxBrouwerij.Text;
-            string image = textBoxImage.Text;
-
-            if(double.TryParse(percentageInvoer, out percentage))
-            {
-                BierToevoegenModel.ToevoegenBier(naam, soort, percentage, brouwerij, image);
-                textBoxNaam.Text = "";
-                textBoxSoort.Text = "";
-                textBoxPercentage.Text = "";
-                textBoxBrouwerij.Text = "";
-                textBoxImage.Text = "";
-                Popup.IsOpen = true;
-            }
-            else
-            {
-                textBoxPercentage.Text = "Error, gelieve een correct percentage in te voeren!";
-                textBoxPercentage.Foreground = Brushes.Red;
-            }
+            Popup.IsOpen = true;
         }
 
         private void KnopClosePopup_Click(object sender, RoutedEventArgs e)

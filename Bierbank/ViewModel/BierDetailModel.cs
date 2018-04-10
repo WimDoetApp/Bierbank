@@ -1,4 +1,5 @@
-﻿using Bierbank.Model;
+﻿using Bierbank.Extensions;
+using Bierbank.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +9,13 @@ using System.Windows.Input;
 
 namespace Bierbank.ViewModel
 {
-    public class BierToevoegenModel : BaseViewModel
+    public class BierDetailModel : BaseViewModel
     {
         private Biertjes selectedBiertje;
         public Biertjes SelectedBiertje
         {
             get
             {
-                if(selectedBiertje == null)
-                {
-                    selectedBiertje = new Biertjes();
-                }
                 return selectedBiertje;
             }
             set
@@ -28,22 +25,29 @@ namespace Bierbank.ViewModel
             }
         }
 
-        public ICommand InsertCommand { get; set; }
+        public ICommand UpdateCommand { get; set; }
 
-        public BierToevoegenModel()
+        public BierDetailModel()
         {
-            KoppelenCommands();
+            Messenger.Default.Register<Biertjes>(this, OnBiertjeRecieved);
+
+            UpdateCommand = new BaseCommand(UpdateBiertje);
         }
- 
+
+        private void OnBiertjeRecieved(Biertjes biertje)
+        {
+            SelectedBiertje = biertje;
+        }
+
         private void KoppelenCommands()
         {
-            InsertCommand = new BaseCommand(ToevoegenBiertje);
+            UpdateCommand = new BaseCommand(UpdateBiertje);
         }
 
-        private void ToevoegenBiertje()
+        private void UpdateBiertje()
         {
             BierDataService ds = new BierDataService();
-            ds.InsertBiertje(SelectedBiertje);
+            ds.UpdateBiertje(SelectedBiertje);
         }
     }
 }

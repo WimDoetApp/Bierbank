@@ -7,6 +7,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="MyDictionary.xaml"/>
+                <ResourceDictionary>
+                    <local:ViewModelLocator x:Key="ViewModelLocator"></local:ViewModelLocator>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

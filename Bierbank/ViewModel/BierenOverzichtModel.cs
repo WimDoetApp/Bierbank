@@ -10,6 +10,7 @@ using Bierbank.View;
 using System.Windows.Input;
 using Bierbank.Extensions;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Bierbank.ViewModel
 {
@@ -29,15 +30,45 @@ namespace Bierbank.ViewModel
             }
         }
 
+        private Biertjes selectedBiertje;
+        public Biertjes SelectedBiertje
+        {
+            get
+            {
+                return selectedBiertje;
+            }
+            set
+            {
+                selectedBiertje = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ICommand WeergevenCommand { get; set; }
+
         public BierenOverzichtModel()
         {
             LeesGegevens();
+            KoppelenCommands();
         }
 
         private void LeesGegevens()
         {
             BierDataService ds = new BierDataService();
             Biertjes = ds.GetBiertjes();
+        }
+
+        private void KoppelenCommands()
+        {
+            WeergevenCommand = new BaseCommand(BierDetailWeergeven);
+        }
+
+        private void BierDetailWeergeven()
+        {
+            if (SelectedBiertje != null)
+            {
+                Messenger.Default.Send<Biertjes>(SelectedBiertje);
+            }
         }
     }
 

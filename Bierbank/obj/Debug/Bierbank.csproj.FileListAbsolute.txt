@@ -23,3 +23,13 @@ D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\Bier
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierenOverzicht.baml
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierToevoegen.g.cs
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierToevoegen.baml
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierDetail.g.cs
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierDetail.baml
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.Expression.Controls.dll
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.Expression.Drawing.dll
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.Expression.Effects.dll
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.Expression.Interactions.dll
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.Expression.Prototyping.Interactivity.dll
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.Expression.Prototyping.SketchControls.dll
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.SDK.Expression.Blend.dll
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\System.Windows.Interactivity.dll
