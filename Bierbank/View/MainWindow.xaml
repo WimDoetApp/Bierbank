@@ -9,6 +9,8 @@
     <DockPanel>
         <ToolBar Background="{DynamicResource ToolBarKleur}" DockPanel.Dock="Top">
             <Label FontSize="20" Margin="8" Padding="8" Foreground="{DynamicResource LetterKleur}" Content="Bierbank"/>
+            <Button Name="ButtonBack" Content="Terug" Style="{DynamicResource ToolBarButton}" Click="ButtonBack_Click"/>
+            <Button Name="ButtonForward" Content="Verder" Style="{DynamicResource ToolBarButton}" Click="ButtonForward_Click"/>
             <Button Name="KnopToevoegen" Content="Bier toevoegen" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
         </ToolBar>
 

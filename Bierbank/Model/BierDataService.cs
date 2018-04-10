@@ -27,7 +27,7 @@ namespace Bierbank.Model
             return db.Query<Biertjes>(sql).ToObservableCollection();
         }
 
-        public void UpdateBiertjes(Biertjes biertje)
+        public void UpdateBiertje(Biertjes biertje)
         {
             string sql = "Update biertjes set naam = @naam, soort = @soort, percentage = @percentage, brouwerij = @brouwerij, image = @image where id = @id";
 
@@ -42,7 +42,7 @@ namespace Bierbank.Model
             });
         }
 
-        public void InsertBiertjes(Biertjes biertje)
+        public void InsertBiertje(Biertjes biertje)
         {
             string sql = "Insert into biertjes (naam, soort, percentage, brouwerij, image) values (@naam, @soort, @percentage, @brouwerij, @image)";
 
@@ -56,7 +56,7 @@ namespace Bierbank.Model
             });
         }
 
-        public void DeleteBiertjes(Biertjes biertje)
+        public void DeleteBiertje(Biertjes biertje)
         {
             string sql = "Delete biertjes where id = @id";
 

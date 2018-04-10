@@ -23,20 +23,37 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" FontSize="15" Content="Naam:"/>
-        <TextBox Grid.Row="0" Grid.Column="1" FontSize="15"/>
+        <TextBox Grid.Row="0" Grid.Column="1" FontSize="15" Name="textBoxNaam"/>
 
         <Label Grid.Row="1" Grid.Column="0" FontSize="15" Content="Soort:"/>
-        <TextBox Grid.Row="1" Grid.Column="1" FontSize="15"/>
+        <TextBox Grid.Row="1" Grid.Column="1" FontSize="15" Name="textBoxSoort"/>
 
-        <Label Grid.Row="2" Grid.Column="0" FontSize="15" Content="Percentage:"/>
-        <TextBox Grid.Row="2" Grid.Column="1" FontSize="15"/>
+        <Label Grid.Row="2" Grid.Column="0" FontSize="15" Content="Percentage:">
+            <Label.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Ingeven als komma getal, gescheiden door een punt. Bv: 5% is 0.05</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Label.ToolTip>
+        </Label>
+        <TextBox Grid.Row="2" Grid.Column="1" FontSize="15" Name="textBoxPercentage"/>
 
         <Label Grid.Row="3" Grid.Column="0" FontSize="15" Content="Brouwerij:"/>
-        <TextBox Grid.Row="3" Grid.Column="1" FontSize="15"/>
+        <TextBox Grid.Row="3" Grid.Column="1" FontSize="15" Name="textBoxBrouwerij"/>
 
         <Label Grid.Row="4" Grid.Column="0" FontSize="15" Content="Image:"/>
-        <TextBox Grid.Row="4" Grid.Column="1" FontSize="15"/>
+        <TextBox Grid.Row="4" Grid.Column="1" FontSize="15" Name="textBoxImage"/>
 
-        <Button Grid.Row="5" Grid.Column="1" Name="KnopToevoegen" Content="Bier toevoegen" Style="{DynamicResource ToolBarButton}"/>
+        <Button Grid.Row="5" Grid.Column="1" Name="KnopToevoegen" Content="Bier toevoegen" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
+
+        <Popup Grid.Row="0" Grid.Column="0" Name="Popup" Width="200" Height="100" IsOpen="False" VerticalAlignment="Top">
+            <Border BorderBrush="Black" BorderThickness="2">
+                <StackPanel Background="{DynamicResource ToolBarKleur}">
+                <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Bier succesvol toevegoed!"/>
+                <Button Name="KnopClosePopup" Content="OK" Style="{DynamicResource ToolBarButton}" Click="KnopClosePopup_Click"/>
+            </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </Page>

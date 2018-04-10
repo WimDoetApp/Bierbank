@@ -31,5 +31,21 @@ namespace Bierbank.View
             BierToevoegen voegToe = new BierToevoegen();
             frame.NavigationService.Navigate(voegToe);
         }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (frame.NavigationService.CanGoBack)
+            {
+                frame.NavigationService.GoBack();
+            }
+        }
+
+        private void ButtonForward_Click(object sender, RoutedEventArgs e)
+        {
+            if (frame.NavigationService.CanGoForward)
+            {
+                frame.NavigationService.GoForward();
+            }
+        }
     }
 }
