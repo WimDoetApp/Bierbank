@@ -13,6 +13,8 @@ namespace Bierbank
         private static BierenOverzichtModel menuWindowViewModel = new BierenOverzichtModel();
         private static BierDetailModel bierDetailModel = new BierDetailModel();
         private static BierToevoegenModel bierToevoegenModel = new BierToevoegenModel();
+        private static BierNoteToevoegenModel bierNoteToevoegenModel = new BierNoteToevoegenModel();
+        private static BierNoteDetailModel bierNoteDetailModel = new BierNoteDetailModel();
 
         public static BierenOverzichtModel MenuWindowViewModel
         {
@@ -35,6 +37,22 @@ namespace Bierbank
             get
             {
                 return bierToevoegenModel;
+            }
+        }
+
+        public static BierNoteToevoegenModel BierNoteToevoegenModel
+        {
+            get
+            {
+                return bierNoteToevoegenModel;
+            }
+        }
+
+        public static BierNoteDetailModel BierNoteDetailModel
+        {
+            get
+            {
+                return bierNoteDetailModel;
             }
         }
     }

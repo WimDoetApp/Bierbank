@@ -16,24 +16,24 @@ using System.Windows.Shapes;
 namespace Bierbank.View
 {
     /// <summary>
-    /// Interaction logic for BierDetail.xaml
+    /// Interaction logic for BierNotesOverzicht.xaml
     /// </summary>
-    public partial class BierDetail : Page
+    public partial class BierNotesOverzicht : Page
     {
-        public BierDetail()
+        public BierNotesOverzicht()
         {
             InitializeComponent();
         }
 
-        private void KnopVerwijderen_Click(object sender, RoutedEventArgs e)
+        private void KnopToevoegen_Click(object sender, RoutedEventArgs e)
         {
-            BierenOverzicht bierenOverzicht = new BierenOverzicht();
-            NavigationService.Navigate(bierenOverzicht);
+            BierNoteToevoegen bierNoteToevoegen = new BierNoteToevoegen();
+            NavigationService.Navigate(bierNoteToevoegen);
         }
 
-        private void ListViewNotes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BierNoteDetail bierNoteDetail = new BierNoteDetail();
+            Page bierNoteDetail = new BierNoteDetail();
             NavigationService.Navigate(bierNoteDetail);
         }
     }

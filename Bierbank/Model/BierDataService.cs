@@ -65,11 +65,11 @@ namespace Bierbank.Model
         }
 
         //BierInLijst
-        public List<BierInLijst> GetBierInLijst()
+        public ObservableCollection<BierInLijst> GetBierInLijst()
         {
             string sql = "Select * from bierInLijst";
 
-            return (List<BierInLijst>)db.Query<BierInLijst>(sql);
+            return db.Query<BierInLijst>(sql).ToObservableCollection();
         }
 
         public void InsertBierInLijst(BierInLijst bierInLijst)
@@ -92,11 +92,11 @@ namespace Bierbank.Model
         }
 
         //Lijsten
-        public List<Lijsten> GetLijsten()
+        public ObservableCollection<Lijsten> GetLijsten()
         {
             string sql = "Select * from lijsten";
 
-            return (List<Lijsten>)db.Query<Lijsten>(sql);
+            return db.Query<Lijsten>(sql).ToObservableCollection();
         }
 
         public void UpdateLijsten(Lijsten lijst)
@@ -129,11 +129,18 @@ namespace Bierbank.Model
         }
 
         //Notes
-        public List<BierNotes> GetBierNotes()
+        public ObservableCollection<BierNotes> GetBierNotes()
         {
             string sql = "Select * from bierNotes";
 
-            return (List<BierNotes>)db.Query<BierNotes>(sql);
+            return db.Query<BierNotes>(sql).ToObservableCollection();
+        }
+
+        public ObservableCollection<BierNotes> GetBierNotesBijBier(int bierId)
+        {
+            string sql = "Select * from bierNotes where bierId = @id";
+
+            return db.Query<BierNotes>(sql, new { id = bierId }).ToObservableCollection();
         }
 
         public void UpdateBierNotes(BierNotes note)
@@ -142,7 +149,7 @@ namespace Bierbank.Model
 
             db.Execute(sql, new
             {
-                naam = note.BierId,
+                bierId = note.BierId,
                 onderwerp = note.Onderwerp,
                 beschrijving = note.Beschrijving,
                 note.Id
@@ -155,7 +162,7 @@ namespace Bierbank.Model
 
             db.Execute(sql, new
             {
-                naam = note.BierId,
+                bierId = note.BierId,
                 onderwerp = note.Onderwerp,
                 beschrijving = note.Beschrijving
             });

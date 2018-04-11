@@ -33,3 +33,9 @@ D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.Expression.Prototyping.SketchControls.dll
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\Microsoft.SDK.Expression.Blend.dll
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\bin\Debug\System.Windows.Interactivity.dll
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNotesOverzicht.g.cs
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNotesOverzicht.baml
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNoteDetail.g.cs
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNoteToevoegen.g.cs
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNoteDetail.baml
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNoteToevoegen.baml

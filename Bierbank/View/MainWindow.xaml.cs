@@ -26,12 +26,6 @@ namespace Bierbank.View
             InitializeComponent();
         }
 
-        private void KnopToevoegen_Click(object sender, RoutedEventArgs e)
-        {
-            BierToevoegen voegToe = new BierToevoegen();
-            frame.NavigationService.Navigate(voegToe);
-        }
-
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             if (frame.NavigationService.CanGoBack)
@@ -46,6 +40,18 @@ namespace Bierbank.View
             {
                 frame.NavigationService.GoForward();
             }
+        }
+
+        private void KnopBierNotes_Click(object sender, RoutedEventArgs e)
+        {
+            BierNotesOverzicht bierNotesOverzicht = new BierNotesOverzicht();
+            frame.NavigationService.Navigate(bierNotesOverzicht);
+        }
+
+        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            BierenOverzicht bierenOverzicht = new BierenOverzicht();
+            frame.NavigationService.Navigate(bierenOverzicht);
         }
     }
 }

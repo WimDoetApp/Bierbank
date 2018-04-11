@@ -95,12 +95,24 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BierDetailModel.cs" />
     <Compile Include="ViewModel\BierenOverzichtModel.cs" />
+    <Compile Include="ViewModel\BierNoteDetailModel.cs" />
+    <Compile Include="ViewModel\BierNotesOverzichtModel.cs" />
+    <Compile Include="ViewModel\BierNoteToevoegenModel.cs" />
     <Compile Include="ViewModel\BierToevoegenModel.cs" />
     <Compile Include="View\BierDetail.xaml.cs">
       <DependentUpon>BierDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BierenOverzicht.xaml.cs">
       <DependentUpon>BierenOverzicht.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BierNoteDetail.xaml.cs">
+      <DependentUpon>BierNoteDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BierNotesOverzicht.xaml.cs">
+      <DependentUpon>BierNotesOverzicht.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BierNoteToevoegen.xaml.cs">
+      <DependentUpon>BierNoteToevoegen.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BierToevoegen.xaml.cs">
       <DependentUpon>BierToevoegen.xaml</DependentUpon>
@@ -161,6 +173,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BierNoteDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BierNotesOverzicht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BierNoteToevoegen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BierToevoegen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +193,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

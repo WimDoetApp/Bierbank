@@ -15,19 +15,22 @@
     </Page.Resources>
 
     <Grid DataContext="{StaticResource MenuViewModel}">
-        <ListView Margin="20" ItemsSource="{Binding Biertjes}" SelectedItem="{Binding SelectedBiertje}" MouseDoubleClick="ListView_MouseDoubleClick">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="0" Margin="20" ItemsSource="{Binding Biertjes}" SelectedItem="{Binding SelectedBiertje}" MouseDoubleClick="ListView_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding Image, StringFormat=images/{0}}" />
 
-                        <Border BorderBrush="Wheat" BorderThickness="2" CornerRadius="8,8,8,8">
-                            <Rectangle Width="50" Stroke="Black" StrokeThickness="1" RadiusX="8" RadiusY="8">
-                                <Rectangle.Fill>
-                                    <ImageBrush ImageSource="{Binding Text, ElementName=ImageName}"/>
-                                </Rectangle.Fill>
-                            </Rectangle>
-                        </Border>
+                        <Rectangle Width="50" Stroke="{DynamicResource ToolBarKleur}" StrokeThickness="2" RadiusX="8" RadiusY="8">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="{Binding Text, ElementName=ImageName}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
 
                         <StackPanel Orientation="Vertical">
                             <Label FontSize="15" Content="{Binding Naam}"/>
@@ -43,6 +46,8 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>
+
+        <Button Grid.Row="1" Name="KnopToevoegen" Content="Bier toevoegen" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
     </Grid>
 </Page>
 

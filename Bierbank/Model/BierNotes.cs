@@ -14,6 +14,7 @@ namespace Bierbank.Model
         private int bierId;
         private string onderwerp;
         private string beschrijving;
+        private Biertjes biertje;
 
         public int Id
         {
@@ -63,6 +64,19 @@ namespace Bierbank.Model
             set
             {
                 beschrijving = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Biertjes Biertje
+        {
+            get
+            {
+                return biertje;
+            }
+            set
+            {
+                biertje = value;
                 NotifyPropertyChanged();
             }
         }
