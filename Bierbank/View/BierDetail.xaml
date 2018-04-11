@@ -36,25 +36,46 @@
         <TextBox Grid.Row="0" FontSize="15" Width="300" Text="{Binding SelectedBiertje.Naam, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Row="1" FontSize="15" Content="Soort:"/>
-        <TextBox Grid.Row="1" FontSize="15" Width="300" Text="{Binding SelectedBiertje.Soort, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Row="1" FontSize="15" Width="300" Text="{Binding SelectedBiertje.Soort, Mode=TwoWay}"/>
 
-        <Label Grid.Row="2" FontSize="15" Content="Percentage:"/>
+        <Label Grid.Row="2" FontSize="15" Content="Percentage:">
+            <Label.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Ingeven als komma getal, gescheiden door een punt. Bv: 5% is 0.05</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Label.ToolTip>
+        </Label>
         <TextBox Grid.Row="2" FontSize="15" Width="300" Text="{Binding SelectedBiertje.Percentage, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Row="3" FontSize="15" Content="Brouwerij:"/>
-        <TextBox Grid.Row="3" FontSize="15" Width="300" Text="{Binding SelectedBiertje.Brouwerij, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Row="3" FontSize="15" Width="300" Text="{Binding SelectedBiertje.Brouwerij, Mode=TwoWay}"/>
 
         <Label Grid.Row="4" FontSize="15" Content="Image:"/>
-        <TextBox Grid.Row="4" FontSize="15" Width="300" Text="{Binding SelectedBiertje.Image, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Row="4" FontSize="15" Width="300" Text="{Binding SelectedBiertje.Image, Mode=TwoWay}"/>
 
         <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding SelectedBiertje.Image, StringFormat=images/{0}}" />
 
-        <Border BorderBrush="Wheat" BorderThickness="2" CornerRadius="8,8,8,8" Grid.Row="4" Grid.Column="1">
-            <Rectangle Width="100" Stroke="Black" StrokeThickness="1" RadiusX="8" RadiusY="8">
+        <Button Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
+
+        <Button Grid.Row="1" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}" Click="KnopVerwijderen_Click"/>
+
+        <Border Width="100"  BorderBrush="Wheat" BorderThickness="2" CornerRadius="8,8,8,8" Grid.Row="4" Grid.Column="1">
+            <Rectangle Stroke="Black" StrokeThickness="1" RadiusX="8" RadiusY="8">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="{Binding Text, ElementName=ImageName}"/>
                 </Rectangle.Fill>
             </Rectangle>
         </Border>
+
+        <Popup Name="Popup" Width="225" Height="100" IsOpen="False" PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
+            <Border BorderBrush="Black" BorderThickness="2">
+                <StackPanel Background="{DynamicResource ToolBarKleur}">
+                    <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Bier verwijdert uit de databank!"/>
+                    <Button Name="KnopClosePopup" Content="OK" Style="{DynamicResource ToolBarButton}" Click="KnopClosePopup_Click"/>
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </Page>

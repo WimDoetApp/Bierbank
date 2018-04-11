@@ -24,5 +24,15 @@ namespace Bierbank.View
         {
             InitializeComponent();
         }
+
+        private void KnopVerwijderen_Click(object sender, RoutedEventArgs e)
+        {
+            Popup.IsOpen = true;
+        }
+
+        private void KnopClosePopup_Click(object sender, RoutedEventArgs e)
+        {
+            Popup.IsOpen = false;
+        }
     }
 }

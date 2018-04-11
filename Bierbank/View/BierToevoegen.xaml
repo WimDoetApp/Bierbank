@@ -58,10 +58,10 @@
 
         <Button Grid.Row="5" Grid.Column="1" Name="KnopToevoegen" Content="Bier toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
 
-        <Popup Grid.Row="0" Grid.Column="0" Name="Popup" Width="200" Height="100" IsOpen="False" VerticalAlignment="Top">
+        <Popup Name="Popup" Width="200" Height="100" IsOpen="False" PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
             <Border BorderBrush="Black" BorderThickness="2">
-                <StackPanel Background="{DynamicResource ToolBarKleur}">
-                <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Bier succesvol toevegoed!"/>
+            <StackPanel Background="{DynamicResource ToolBarKleur}">
+                <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Bier succesvol toegevoegd!"/>
                 <Button Name="KnopClosePopup" Content="OK" Style="{DynamicResource ToolBarButton}" Click="KnopClosePopup_Click"/>
             </StackPanel>
             </Border>

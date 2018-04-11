@@ -25,13 +25,13 @@ namespace Bierbank.ViewModel
             }
         }
 
-        public ICommand UpdateCommand { get; set; }
+        public ICommand WijzigenCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public BierDetailModel()
         {
             Messenger.Default.Register<Biertjes>(this, OnBiertjeRecieved);
-
-            UpdateCommand = new BaseCommand(UpdateBiertje);
+            KoppelenCommands();
         }
 
         private void OnBiertjeRecieved(Biertjes biertje)
@@ -41,13 +41,26 @@ namespace Bierbank.ViewModel
 
         private void KoppelenCommands()
         {
-            UpdateCommand = new BaseCommand(UpdateBiertje);
+            WijzigenCommand = new BaseCommand(UpdateBiertje);
+            DeleteCommand = new BaseCommand(VerwijderBiertje);
         }
 
         private void UpdateBiertje()
         {
             BierDataService ds = new BierDataService();
             ds.UpdateBiertje(SelectedBiertje);
+        }
+
+        private void WijzigBiertje()
+        {
+            BierDataService ds = new BierDataService();
+            ds.UpdateBiertje(SelectedBiertje);
+        }
+
+        private void VerwijderBiertje()
+        {
+            BierDataService ds = new BierDataService();
+            ds.DeleteBiertje(SelectedBiertje);
         }
     }
 }
