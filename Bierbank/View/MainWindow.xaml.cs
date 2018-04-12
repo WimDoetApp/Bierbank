@@ -53,5 +53,11 @@ namespace Bierbank.View
             BierenOverzicht bierenOverzicht = new BierenOverzicht();
             frame.NavigationService.Navigate(bierenOverzicht);
         }
+
+        private void KnopLijsten_Click(object sender, RoutedEventArgs e)
+        {
+            LijstenOverzicht lijstenOverzicht = new LijstenOverzicht();
+            frame.NavigationService.Navigate(lijstenOverzicht);
+        }
     }
 }

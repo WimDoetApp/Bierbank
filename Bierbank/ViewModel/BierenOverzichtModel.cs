@@ -16,6 +16,7 @@ namespace Bierbank.ViewModel
 {
     public class BierenOverzichtModel : BaseViewModel
     {
+        //alle bieren
         private ObservableCollection<Biertjes> biertjes;
         public ObservableCollection<Biertjes> Biertjes
         {
@@ -30,6 +31,7 @@ namespace Bierbank.ViewModel
             }
         }
 
+        //geselecteerde bier
         private Biertjes selectedBiertje;
         public Biertjes SelectedBiertje
         {
@@ -52,6 +54,7 @@ namespace Bierbank.ViewModel
             KoppelenCommands();
         }
 
+        //ohpalen bieren
         private void LeesGegevens()
         {
             BierDataService ds = new BierDataService();
@@ -63,6 +66,7 @@ namespace Bierbank.ViewModel
             WeergevenCommand = new BaseCommand(BierDetailWeergeven);
         }
 
+        //naar de detailpagina van een bier gaan
         private void BierDetailWeergeven()
         {
             if (SelectedBiertje != null)

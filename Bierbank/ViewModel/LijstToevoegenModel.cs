@@ -8,44 +8,44 @@ using System.Windows.Input;
 
 namespace Bierbank.ViewModel
 {
-    public class BierToevoegenModel : BaseViewModel
+    public class LijstToevoegenModel : BaseViewModel
     {
-        //geselecteerde biernote
-        private Biertjes selectedBiertje;
-        public Biertjes SelectedBiertje
+        //lege lijst
+        private Lijsten lijst;
+        public Lijsten Lijst
         {
             get
             {
-                if(selectedBiertje == null)
+                if (lijst == null)
                 {
-                    selectedBiertje = new Biertjes();
+                    lijst = new Lijsten();
                 }
-                return selectedBiertje;
+                return lijst;
             }
             set
             {
-                selectedBiertje = value;
+                lijst = value;
                 NotifyPropertyChanged();
             }
         }
 
         public ICommand InsertCommand { get; set; }
 
-        public BierToevoegenModel()
+        public LijstToevoegenModel()
         {
             KoppelenCommands();
         }
- 
+
         private void KoppelenCommands()
         {
-            InsertCommand = new BaseCommand(ToevoegenBiertje);
+            InsertCommand = new BaseCommand(ToevoegenLijst);
         }
 
-        //toevoegen bier
-        private void ToevoegenBiertje()
+        //lijst toevoegen
+        private void ToevoegenLijst()
         {
             BierDataService ds = new BierDataService();
-            ds.InsertBiertje(SelectedBiertje);
+            ds.InsertLijsten(Lijst);
         }
     }
 }

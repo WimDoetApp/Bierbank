@@ -1,13 +1,13 @@
-﻿<Page x:Class="Bierbank.View.BierNoteToevoegen"
+﻿<Page x:Class="Bierbank.View.LijstToevoegen"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Bierbank.View"
-      DataContext="{Binding Source={StaticResource ViewModelLocator},  Path=BierNoteToevoegenModel}"
+      DataContext="{Binding Source={StaticResource ViewModelLocator},  Path=LijstToevoegenModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BierNoteToevoegen">
+      Title="LijstToevoegen">
 
     <Page.Resources>
         <Style TargetType="TextBox">
@@ -31,26 +31,15 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" FontSize="15" Content="Onderwerp:" />
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="20" FontSize="15" Text="{Binding BierNote.Onderwerp, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+        <Label Grid.Row="0" Grid.Column="0" FontSize="15" Content="Naam:" />
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="20" FontSize="15" Text="{Binding Lijst.Naam, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
-        <Label Grid.Row="1" Grid.Column="0" FontSize="15" Content="Note:"/>
-        <TextBox Grid.Row="1" Grid.Column="1" FontSize="15" Margin="20" Text="{Binding BierNote.Beschrijving, Mode=TwoWay}"/>
-
-        <Label Grid.Row="2" Grid.Column="0" FontSize="15" Content="Bier:"/>
-        <ComboBox Grid.Row="2" Grid.Column="1" Margin="20" 
-                  ItemsSource="{Binding Biertjes}"
-                  DisplayMemberPath="Naam"
-                  SelectedValuePath="Id" 
-                  SelectedValue="{Binding BierNote.BierId, Mode=TwoWay}"
-                  SelectedIndex="0" />
-
-        <Button Grid.Row="3" Grid.Column="1" Margin="20" Name="KnopToevoegen" Content="Note toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Margin="20" Name="KnopToevoegen" Content="Lijst toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
 
         <Popup Name="Popup" Width="200" Height="100" IsOpen="False" PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
             <Border BorderBrush="Black" BorderThickness="2">
                 <StackPanel Background="{DynamicResource ToolBarKleur}">
-                    <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Note succesvol toegevoegd!"/>
+                    <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Lijst succesvol toegevoegd!"/>
                     <Button Name="KnopClosePopup" Content="OK" Style="{DynamicResource ToolBarButton}" Click="KnopClosePopup_Click"/>
                 </StackPanel>
             </Border>

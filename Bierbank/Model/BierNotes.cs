@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Bierbank.Model
 {
-    public class BierNotes : BaseModel
+    public class BierNotes : BaseModel, IDataErrorInfo
     {
         private int id;
         private int bierId;
@@ -78,6 +78,27 @@ namespace Bierbank.Model
             {
                 biertje = value;
                 NotifyPropertyChanged();
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return string.Empty;
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                switch (columnName)
+                {
+                    case "Onderwerp": if (string.IsNullOrEmpty(Onderwerp)) result = "Onderwerp moet ingevuld zijn!"; break;
+                };
+                return result;
             }
         }
     }

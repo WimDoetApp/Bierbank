@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Bierbank.Model
 {
-    public class Lijsten : BaseModel
+    public class Lijsten : BaseModel, IDataErrorInfo
     {
         private int id;
         private string naam;
@@ -36,6 +36,27 @@ namespace Bierbank.Model
             {
                 naam = value;
                 NotifyPropertyChanged();
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return string.Empty;
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                switch (columnName)
+                {
+                    case "Naam": if (string.IsNullOrEmpty(Naam)) result = "Naam moet ingevuld zijn!"; break;
+                };
+                return result;
             }
         }
     }

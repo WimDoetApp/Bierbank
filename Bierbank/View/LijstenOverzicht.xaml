@@ -1,14 +1,14 @@
-﻿<Page x:Class="Bierbank.View.BierNotesOverzicht"
+﻿<Page x:Class="Bierbank.View.LijstenOverzicht"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:local="clr-namespace:Bierbank.View"
-      DataContext="{Binding Source={StaticResource ViewModelLocator},  Path=BierNotesOverzichtModel}"
+      DataContext="{Binding Source={StaticResource ViewModelLocator},  Path=LijstenOverzichtModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BierNotesOverzicht">
+      Title="LijstenOverzicht">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,13 +16,10 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <ListView Grid.Row="0" Margin="20" ItemsSource="{Binding BierNotes}" SelectedItem="{Binding SelectedBierNote}" MouseDoubleClick="ListView_MouseDoubleClick">
+        <ListView Grid.Row="0" Margin="20" ItemsSource="{Binding Lijsten}" SelectedItem="{Binding SelectedLijst}" MouseDoubleClick="ListView_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <Label FontSize="15" Content="{Binding Onderwerp}"/>
-                        <Label FontSize="10" Content="{Binding Biertje.Naam}" ContentStringFormat="Hoort bij bier: {0}"/>
-                    </StackPanel>
+                    <Label FontSize="15" Content="{Binding Naam}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
 
@@ -33,6 +30,6 @@
             </i:Interaction.Triggers>
         </ListView>
 
-        <Button Grid.Row="1" Name="KnopToevoegen" Content="Note toevoegen" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
+        <Button Grid.Row="1" Name="KnopToevoegen" Content="Lijst toevoegen" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
     </Grid>
 </Page>

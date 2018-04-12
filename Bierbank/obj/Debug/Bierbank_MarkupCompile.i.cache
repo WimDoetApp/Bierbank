@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\App.xaml
-8-1752093523
+11-666860448
 
-321771396799
+381199080193
 23-794537834
-MyDictionary.xaml;View\BierDetail.xaml;View\BierenOverzicht.xaml;View\BierNoteDetail.xaml;View\BierNotesOverzicht.xaml;View\BierNoteToevoegen.xaml;View\BierToevoegen.xaml;View\MainWindow.xaml;
+MyDictionary.xaml;View\BierDetail.xaml;View\BierenOverzicht.xaml;View\BierInLijstOverzicht.xaml;View\BierNoteDetail.xaml;View\BierNotesOverzicht.xaml;View\BierNoteToevoegen.xaml;View\BierToevoegen.xaml;View\LijstenOverzicht.xaml;View\LijstToevoegen.xaml;View\MainWindow.xaml;
 
 True
 

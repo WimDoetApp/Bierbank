@@ -36,7 +36,7 @@
         <Label Grid.Row="1" FontSize="15" Content="Note:"/>
         <TextBox Grid.Row="1" FontSize="15" Width="300" Margin="20" TextWrapping="Wrap" Text="{Binding SelectedBierNote.Beschrijving, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
-        <Label Grid.Row="2" FontSize="15" Content="Note:"/>
+        <Label Grid.Row="2" FontSize="15" Content="Bier:"/>
         <ComboBox Grid.Row="2"  Width="300" Margin="20" 
                   ItemsSource="{Binding Biertjes}"
                   DisplayMemberPath="Naam"

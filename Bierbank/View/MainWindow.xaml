@@ -17,6 +17,7 @@
             <Button Name="ButtonBack" Content="Terug" Style="{DynamicResource ToolBarButton}" Click="ButtonBack_Click"/>
             <Button Name="ButtonForward" Content="Verder" Style="{DynamicResource ToolBarButton}" Click="ButtonForward_Click"/>
             <Button Name="KnopBierNotes" Content="Bier notes" Style="{DynamicResource ToolBarButton}" Click="KnopBierNotes_Click"/>
+            <Button Name="KnopLijsten" Content="Lijsten" Style="{DynamicResource ToolBarButton}" Click="KnopLijsten_Click"/>
         </ToolBar>
 
         <Frame Source="BierenOverzicht.xaml" Name="frame" NavigationUIVisibility="Hidden" >

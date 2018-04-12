@@ -27,6 +27,13 @@ namespace Bierbank.Model
             return db.Query<Biertjes>(sql).ToObservableCollection();
         }
 
+        public ObservableCollection<Biertjes> GetBiertjesInLijst(string bierIds)
+        {
+            string sql = "Select * from biertjes where id in (" + bierIds +")";
+
+            return db.Query<Biertjes>(sql, new { id = bierIds }).ToObservableCollection();
+        }
+
         public void UpdateBiertje(Biertjes biertje)
         {
             string sql = "Update biertjes set naam = @naam, soort = @soort, percentage = @percentage, brouwerij = @brouwerij, image = @image where id = @id";
@@ -65,30 +72,33 @@ namespace Bierbank.Model
         }
 
         //BierInLijst
-        public ObservableCollection<BierInLijst> GetBierInLijst()
+        public ObservableCollection<BierInLijst> GetBierInLijstByLijstId(int lijstId)
         {
-            string sql = "Select * from bierInLijst";
+            string sql = "Select * from bierInLijst where lijstId = @id";
 
-            return db.Query<BierInLijst>(sql).ToObservableCollection();
+            return db.Query<BierInLijst>(sql, new { id = lijstId }).ToObservableCollection();
         }
 
-        public void InsertBierInLijst(BierInLijst bierInLijst)
+        public void InsertBierInLijst(int bierIdInput, int lijstIdInput)
         {
             string sql = "Insert into bierInLijst (bierId, lijstId) values (@bierId, @lijstId)";
 
             db.Execute(sql, new
             {
-                bierId = bierInLijst.BierId,
-                lijstId = bierInLijst.LijstId
+                bierId = bierIdInput,
+                lijstId = lijstIdInput
             });
         }
 
-        public void DeleteBierInLijst(BierInLijst bierInLijst)
+        public void DeleteBierInLijst(int bierIdInput, int lijstIdInput)
         {
-            string sql = "Delete bierInLijst where id = @id";
+            string sql = "Delete bierInLijst where bierId = @bierId and lijstId = @lijstId";
 
             db.Execute(sql, new
-            { bierInLijst.Id });
+            {
+                bierId = bierIdInput,
+                lijstId = lijstIdInput
+            });
         }
 
         //Lijsten

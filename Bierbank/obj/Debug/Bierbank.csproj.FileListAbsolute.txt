@@ -39,3 +39,9 @@ D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\Bier
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNoteToevoegen.g.cs
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNoteDetail.baml
 D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierNoteToevoegen.baml
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\LijstenOverzicht.g.cs
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\LijstenOverzicht.baml
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\LijstToevoegen.g.cs
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\LijstToevoegen.baml
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierInLijstOverzicht.g.cs
+D:\1. School\Jaar 2\semester 2\WPF\Project\Bierbank\Bierbank\obj\Debug\View\BierInLijstOverzicht.baml

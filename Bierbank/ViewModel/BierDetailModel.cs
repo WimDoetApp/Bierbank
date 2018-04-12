@@ -12,6 +12,7 @@ namespace Bierbank.ViewModel
 {
     public class BierDetailModel : BaseViewModel
     {
+        //het biertje waarvoor we details weergeven
         private Biertjes selectedBiertje;
         public Biertjes SelectedBiertje
         {
@@ -26,6 +27,7 @@ namespace Bierbank.ViewModel
             }
         }
 
+        //alle biernotes bij gekozen bier
         private ObservableCollection<BierNotes> bierNotes;
         public ObservableCollection<BierNotes> BierNotes
         {
@@ -40,6 +42,7 @@ namespace Bierbank.ViewModel
             }
         }
 
+        //de geselecteerde biernote
         private BierNotes selectedBierNote;
         public BierNotes SelectedBierNote
         {
@@ -64,10 +67,12 @@ namespace Bierbank.ViewModel
             KoppelenCommands();
         }
 
+        //ontvangen gekozen bier
         private void OnBiertjeRecieved(Biertjes biertje)
         {
             SelectedBiertje = biertje;
 
+            //alle biernotes bij dit bier ophalen
             BierDataService ds = new BierDataService();
             BierNotes = ds.GetBierNotesBijBier(biertje.Id);
         }
@@ -79,6 +84,7 @@ namespace Bierbank.ViewModel
             WeergevenCommand = new BaseCommand(BierNoteDetailWeergeven);
         }
 
+        //details over de gekozen biernote weergeven
         private void BierNoteDetailWeergeven()
         {
             if (SelectedBierNote != null)
@@ -87,12 +93,14 @@ namespace Bierbank.ViewModel
             }
         }
 
+        //bier aanpassen
         private void UpdateBiertje()
         {
             BierDataService ds = new BierDataService();
             ds.UpdateBiertje(SelectedBiertje);
         }
 
+        //bier verwijderen
         private void VerwijderBiertje()
         {
             BierDataService ds = new BierDataService();

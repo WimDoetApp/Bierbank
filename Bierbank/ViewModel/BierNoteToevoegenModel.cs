@@ -11,6 +11,7 @@ namespace Bierbank.ViewModel
 {
     public class BierNoteToevoegenModel : BaseViewModel
     {
+        //lege biernote
         private BierNotes bierNote;
         public BierNotes BierNote
         {
@@ -29,6 +30,7 @@ namespace Bierbank.ViewModel
             }
         }
 
+        //alle bieren
         private ObservableCollection<Biertjes> biertjes;
         public ObservableCollection<Biertjes> Biertjes
         {
@@ -56,12 +58,14 @@ namespace Bierbank.ViewModel
             InsertCommand = new BaseCommand(ToevoegenBiernote);
         }
 
+        //ophalen bieren
         private void LeesGegevens()
         {
             BierDataService ds = new BierDataService();
             Biertjes = ds.GetBiertjes();
         }
 
+        //toevoegen biernote
         private void ToevoegenBiernote()
         {
             BierDataService ds = new BierDataService();
