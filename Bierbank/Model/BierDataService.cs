@@ -34,6 +34,13 @@ namespace Bierbank.Model
             return db.Query<Biertjes>(sql, new { id = bierIds }).ToObservableCollection();
         }
 
+        public Biertjes GetBiertje(int bierId)
+        {
+            string sql = "Select * from biertjes where id = @id";
+
+            return db.QuerySingle<Biertjes>(sql, new { id = bierId });
+        }
+
         public void UpdateBiertje(Biertjes biertje)
         {
             string sql = "Update biertjes set naam = @naam, soort = @soort, percentage = @percentage, brouwerij = @brouwerij, image = @image where id = @id";

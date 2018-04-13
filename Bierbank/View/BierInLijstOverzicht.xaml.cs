@@ -31,27 +31,10 @@ namespace Bierbank.View
             NavigationService.Navigate(bierDetailView);
         }
 
-        private void KnopClosePopup_Click(object sender, RoutedEventArgs e)
-        {
-            Popup.IsOpen = false;
-        }
-
-        private void KnopToevoegen_Click(object sender, RoutedEventArgs e)
-        {
-            Popup.IsOpen = true;
-            PopupLabel.Content = "Bier succesvol toegevoegd!";
-        }
-
         private void KnopVerwijderen_Click(object sender, RoutedEventArgs e)
         {
             LijstenOverzicht lijstenOverzicht = new LijstenOverzicht();
             NavigationService.Navigate(lijstenOverzicht);
-        }
-
-        private void KnopBierVerwijderen_Click(object sender, RoutedEventArgs e)
-        {
-            Popup.IsOpen = true;
-            PopupLabel.Content = "Bier succesvol verwijderd!";
         }
     }
 }

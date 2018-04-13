@@ -1,6 +1,8 @@
-﻿using Bierbank.Model;
+﻿using Bierbank.Extensions;
+using Bierbank.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +48,17 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.InsertBiertje(SelectedBiertje);
+
+            //refresh
+            BierenHerladen();
+        }
+
+        //bieren herladen
+        private void BierenHerladen()
+        {
+            BierDataService ds = new BierDataService();
+            ObservableCollection<Biertjes> biertjes = ds.GetBiertjes();
+            Messenger.Default.Send<ObservableCollection<Biertjes>>(biertjes);
         }
     }
 }

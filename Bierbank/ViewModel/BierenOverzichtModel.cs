@@ -50,7 +50,13 @@ namespace Bierbank.ViewModel
 
         public BierenOverzichtModel()
         {
-            LeesGegevens();
+            //bieren ontvangen
+            Messenger.Default.Register<ObservableCollection<Biertjes>>(this, OnBiertjesReceived);
+            //Als er via messenger geen bieren ontvangen worden, gaan we ze uit de databank halen
+            if (Biertjes == null)
+            {
+                LeesGegevens();
+            }
             KoppelenCommands();
         }
 
@@ -59,6 +65,12 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             Biertjes = ds.GetBiertjes();
+        }
+
+        //bieren ontvangen
+        private void OnBiertjesReceived(ObservableCollection<Biertjes> biertjes)
+        {
+            Biertjes = biertjes;
         }
 
         private void KoppelenCommands()

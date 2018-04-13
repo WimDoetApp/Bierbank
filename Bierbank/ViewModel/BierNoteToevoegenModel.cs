@@ -1,4 +1,5 @@
-﻿using Bierbank.Model;
+﻿using Bierbank.Extensions;
+using Bierbank.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -70,6 +71,32 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.InsertBierNotes(BierNote);
+
+            //refresh
+            BierNotesHerladen();
+        }
+
+        //biernotes herladen
+        private void BierNotesHerladen()
+        {
+            BierDataService ds = new BierDataService();
+            ObservableCollection<BierNotes> bierNotes = ds.GetBierNotes();
+
+            //Bieren aan de juiste notes linken
+            ObservableCollection<Biertjes> biertjes = ds.GetBiertjes();
+
+            foreach (BierNotes bierNote in bierNotes)
+            {
+                foreach (Biertjes biertje in biertjes)
+                {
+                    if (biertje.Id == bierNote.BierId)
+                    {
+                        bierNote.Biertje = biertje;
+                    }
+                }
+            }
+
+            Messenger.Default.Send<ObservableCollection<BierNotes>>(bierNotes);
         }
     }
 }

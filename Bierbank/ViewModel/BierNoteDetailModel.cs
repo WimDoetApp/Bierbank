@@ -76,6 +76,9 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.UpdateBierNotes(SelectedBierNote);
+
+            //refresh
+            BierNotesHerladen();
         }
 
         //biernote verwijderen
@@ -83,6 +86,32 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.DeleteBierNotes(SelectedBierNote);
+
+            //refresh
+            BierNotesHerladen();
+        }
+
+        //biernotes herladen
+        private void BierNotesHerladen()
+        {
+            BierDataService ds = new BierDataService();
+            ObservableCollection<BierNotes> bierNotes = ds.GetBierNotes();
+
+            //Bieren aan de juiste notes linken
+            ObservableCollection<Biertjes> biertjes = ds.GetBiertjes();
+
+            foreach (BierNotes bierNote in bierNotes)
+            {
+                foreach (Biertjes biertje in biertjes)
+                {
+                    if (biertje.Id == bierNote.BierId)
+                    {
+                        bierNote.Biertje = biertje;
+                    }
+                }
+            }
+
+            Messenger.Default.Send<ObservableCollection<BierNotes>>(bierNotes);
         }
     }
 }

@@ -63,12 +63,12 @@ namespace Bierbank.ViewModel
 
         public BierDetailModel()
         {
-            Messenger.Default.Register<Biertjes>(this, OnBiertjeRecieved);
+            Messenger.Default.Register<Biertjes>(this, OnBiertjeReceived);
             KoppelenCommands();
         }
 
         //ontvangen gekozen bier
-        private void OnBiertjeRecieved(Biertjes biertje)
+        private void OnBiertjeReceived(Biertjes biertje)
         {
             SelectedBiertje = biertje;
 
@@ -98,6 +98,9 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.UpdateBiertje(SelectedBiertje);
+
+            //refresh
+            BierenHerladen();
         }
 
         //bier verwijderen
@@ -105,6 +108,17 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.DeleteBiertje(SelectedBiertje);
+
+            //refresh
+            BierenHerladen();
+        }
+
+        //bieren herladen
+        private void BierenHerladen()
+        {
+            BierDataService ds = new BierDataService();
+            ObservableCollection<Biertjes> biertjes = ds.GetBiertjes();
+            Messenger.Default.Send<ObservableCollection<Biertjes>>(biertjes);
         }
     }
 }

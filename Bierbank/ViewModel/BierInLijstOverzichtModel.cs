@@ -111,7 +111,6 @@ namespace Bierbank.ViewModel
         public BierInLijstOverzichtModel()
         {
             Messenger.Default.Register<Lijsten>(this, OnLijstReceived);
-            LeesGegevens();
             KoppelenCommands();
         }
 
@@ -124,19 +123,14 @@ namespace Bierbank.ViewModel
             DeleteBierCommand = new BaseCommand(DeleteBier);
         }
 
-        private void LeesGegevens()
-        {
-            BierDataService ds = new BierDataService();
-            Biertjes = ds.GetBiertjes();
-        }
-
         //gekozen lijst ontvangen
         private void OnLijstReceived(Lijsten lijst)
         {
+            BierDataService ds = new BierDataService();
+            Biertjes = ds.GetBiertjes(); //Door deze lijn is er in de combobox niks geselecteerd
             SelectedLijst = lijst;
 
             //connectie tussen bieren en lijsten via BierInLijst
-            BierDataService ds = new BierDataService();
             BierenInLijst = ds.GetBierInLijstByLijstId(SelectedLijst.Id);
 
             //lijst van bierIds
@@ -174,6 +168,9 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.InsertBierInLijst(SelectedBierId, SelectedLijst.Id);
+
+            //refresh
+            BiertjesInLijstHerladen();
         }
         
         //lijst aanpassen
@@ -188,6 +185,9 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.DeleteLijsten(SelectedLijst);
+
+            //refresh
+            LijstenHerladen();
         }
 
         //bier uit lijst verwijderen
@@ -195,6 +195,42 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             ds.DeleteBierInLijst(SelectedBiertje.Id, SelectedLijst.Id);
+
+            //refresh
+            BiertjesInLijstHerladen();
+        }
+
+        //lijsten herladen
+        private void LijstenHerladen()
+        {
+            BierDataService ds = new BierDataService();
+            ObservableCollection<Lijsten> lijsten = ds.GetLijsten();
+            Messenger.Default.Send<ObservableCollection<Lijsten>>(lijsten);
+        }
+
+        //bieren in lijsten herladen
+        private void BiertjesInLijstHerladen()
+        {
+            BierDataService ds = new BierDataService();
+
+            //connectie tussen bieren en lijsten via BierInLijst
+            BierenInLijst = ds.GetBierInLijstByLijstId(SelectedLijst.Id);
+
+            //lijst van bierIds
+            List<int> bierIdsList = new List<int>();
+
+            foreach (BierInLijst BierInLijst in BierenInLijst)
+            {
+                bierIdsList.Add(BierInLijst.BierId);
+            }
+
+            if (bierIdsList.Any())
+            {
+                string bierIds = string.Join(",", bierIdsList.ToArray());
+
+                //bieren ophalen
+                BiertjesInLijst = ds.GetBiertjesInLijst(bierIds);
+            }
         }
     }
 }

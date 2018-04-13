@@ -46,7 +46,13 @@ namespace Bierbank.ViewModel
 
         public LijstenOverzichtModel()
         {
-            LeesGegevens();
+            //lijsten ontvangen
+            Messenger.Default.Register<ObservableCollection<Lijsten>>(this, OnLijstenReceived);
+            //Als er via messenger geen lijsen ontvangen worden, gaan we ze uit de databank halen
+            if (Lijsten == null)
+            {
+                LeesGegevens();
+            }
             KoppelenCommands();
         }
 
@@ -54,6 +60,12 @@ namespace Bierbank.ViewModel
         {
             BierDataService ds = new BierDataService();
             Lijsten = ds.GetLijsten();
+        }
+
+        //lijsten ontvangen
+        private void OnLijstenReceived(ObservableCollection<Lijsten> lijsten)
+        {
+            Lijsten = lijsten;
         }
 
         private void KoppelenCommands()

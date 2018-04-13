@@ -43,26 +43,17 @@ namespace Bierbank.ViewModel
             }
         }
 
-        //alle bieren
-        private ObservableCollection<Biertjes> biertjes;
-        public ObservableCollection<Biertjes> Biertjes
-        {
-            get
-            {
-                return biertjes;
-            }
-            set
-            {
-                biertjes = value;
-                NotifyPropertyChanged();
-            }
-        }
-
         public ICommand WeergevenCommand { get; set; }
 
         public BierNotesOverzichtModel()
         {
-            LeesGegevens();
+            //lijsten ontvangen
+            Messenger.Default.Register<ObservableCollection<BierNotes>>(this, OnBierNotesReceived);
+            //Als er via messenger geen lijsen ontvangen worden, gaan we ze uit de databank halen
+            if (BierNotes == null)
+            {
+                LeesGegevens();
+            }
             OphalenBierenBijNotes();
             KoppelenCommands();
         }
@@ -79,6 +70,12 @@ namespace Bierbank.ViewModel
             BierNotes = ds.GetBierNotes();
         }
 
+        //biernotes ontvangen
+        private void OnBierNotesReceived(ObservableCollection<BierNotes> bierNotes)
+        {
+            BierNotes = bierNotes;
+        }
+
         //details over de gekozen biernote weergeven
         private void BierNoteDetailWeergeven()
         {
@@ -92,15 +89,15 @@ namespace Bierbank.ViewModel
         private void OphalenBierenBijNotes()
         {
             BierDataService ds = new BierDataService();
-            Biertjes = ds.GetBiertjes();
+            ObservableCollection<Biertjes> biertjes = ds.GetBiertjes();
 
             foreach(BierNotes BierNote in BierNotes)
             {
-                foreach(Biertjes Biertje in Biertjes)
+                foreach(Biertjes biertje in biertjes)
                 {
-                    if(Biertje.Id == BierNote.BierId)
+                    if(biertje.Id == BierNote.BierId)
                     {
-                        BierNote.Biertje = Biertje;
+                        BierNote.Biertje = biertje;
                     }
                 }
             }

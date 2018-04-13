@@ -51,7 +51,7 @@
                 </i:Interaction.Triggers>
             </ListView>
 
-            <Button Name="KnopBierVerwijderen" Width="110" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteBierCommand}" Click="KnopBierVerwijderen_Click">
+            <Button Name="KnopBierVerwijderen" Width="110" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteBierCommand}">
                 <TextBlock TextWrapping="Wrap">Geselecteerd bier verwijderen</TextBlock>
             </Button>
         </StackPanel>
@@ -63,17 +63,8 @@
                   DisplayMemberPath="Naam"
                   SelectedValuePath="Id" 
                   SelectedValue="{Binding SelectedBierId, Mode=TwoWay}"
-                  SelectedIndex="0" />
-            <Button Name="KnopToevoegen" Width="200" Content="Bier toevoegen" Command="{Binding InsertCommand}" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
+                  SelectedIndex="1" />
+            <Button Name="KnopToevoegen" Width="200" Content="Bier toevoegen" Command="{Binding InsertCommand}" Style="{DynamicResource ToolBarButton}"/>
         </StackPanel>
-
-        <Popup Name="Popup" Width="200" Height="100" IsOpen="False" Placement="Center">
-            <Border BorderBrush="Black" BorderThickness="2">
-                <StackPanel Background="{DynamicResource ToolBarKleur}">
-                    <Label Name="PopupLabel" Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Bier succesvol toegevoegd!"/>
-                    <Button Name="KnopClosePopup" Content="OK" Style="{DynamicResource ToolBarButton}" Click="KnopClosePopup_Click"/>
-                </StackPanel>
-            </Border>
-        </Popup>
     </Grid>
 </Page>
