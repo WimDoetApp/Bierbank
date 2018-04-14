@@ -49,7 +49,6 @@ namespace Bierbank.ViewModel
         {
             Messenger.Default.Register<BierNotes>(this, OnBierNoteReceived);
             KoppelenCommands();
-            LeesGegevens();
         }
 
         private void KoppelenCommands()
@@ -62,6 +61,7 @@ namespace Bierbank.ViewModel
         private void OnBierNoteReceived(BierNotes bierNote)
         {
             SelectedBierNote = bierNote;
+            LeesGegevens();
         }
 
         //bieren ophalen

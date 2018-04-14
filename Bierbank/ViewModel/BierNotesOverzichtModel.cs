@@ -74,6 +74,7 @@ namespace Bierbank.ViewModel
         private void OnBierNotesReceived(ObservableCollection<BierNotes> bierNotes)
         {
             BierNotes = bierNotes;
+            OphalenBierenBijNotes();
         }
 
         //details over de gekozen biernote weergeven
