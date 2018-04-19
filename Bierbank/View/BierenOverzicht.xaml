@@ -16,7 +16,10 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Margin="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"/>
+        <DockPanel Grid.Row="0">
+            <Image Margin="10" Source="/Images/search.png"></Image>
+            <TextBox  Margin="10" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
 
         <ListView Grid.Row="1" Margin="20" ItemsSource="{Binding Biertjes}" SelectedItem="{Binding SelectedBiertje}" MouseDoubleClick="ListView_MouseDoubleClick">
             <ListView.ItemTemplate>

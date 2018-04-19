@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Data;
+using System.Text.RegularExpressions;
 
 namespace Bierbank.ViewModel
 {
@@ -46,6 +47,22 @@ namespace Bierbank.ViewModel
             {
                 selectedBiertje = value;
                 NotifyPropertyChanged();
+            }
+        }
+
+        //zoeken op bier naam
+        private string search;
+        public string Search
+        {
+            get
+            {
+                return search;
+            }
+            set
+            {
+                search = value;
+                NotifyPropertyChanged();
+                GetResults(search);
             }
         }
 
@@ -89,6 +106,31 @@ namespace Bierbank.ViewModel
             {
                 Messenger.Default.Send<Biertjes>(SelectedBiertje);
             }
+        }
+
+        //resultaten zoekquery ophalen
+        private void GetResults(string search)
+        {
+            BierDataService ds = new BierDataService();
+            Biertjes = ds.GetBiertjes();
+
+            ObservableCollection<Biertjes> nieuweBiertjes = new ObservableCollection<Biertjes>();
+
+            Task.Factory.StartNew(() =>
+            {
+                foreach (Biertjes biertje in Biertjes)
+                {
+                    if (biertje.Naam.ToLower().Contains(search.ToLower()) || biertje.Naam.ToLower().StartsWith(search.ToLower()) || biertje.Naam.ToLower().EndsWith(search.ToLower()))
+                    {
+                        nieuweBiertjes.Add(biertje);
+                    }
+                }
+
+                return nieuweBiertjes;
+            }).ContinueWith(task =>
+            {
+                Biertjes = task.Result;
+            }, System.Threading.CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
         }
     }
 
