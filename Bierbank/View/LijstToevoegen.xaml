@@ -35,14 +35,5 @@
         <TextBox Grid.Row="0" Grid.Column="1" Margin="20" FontSize="15" Text="{Binding Lijst.Naam, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
         <Button Grid.Row="3" Grid.Column="1" Margin="20" Name="KnopToevoegen" Content="Lijst toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
-
-        <Popup Name="Popup" Width="200" Height="100" IsOpen="False" PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
-            <Border BorderBrush="Black" BorderThickness="2">
-                <StackPanel Background="{DynamicResource ToolBarKleur}">
-                    <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Lijst succesvol toegevoegd!"/>
-                    <Button Name="KnopClosePopup" Content="OK" Style="{DynamicResource ToolBarButton}" Click="KnopClosePopup_Click"/>
-                </StackPanel>
-            </Border>
-        </Popup>
     </Grid>
 </Page>

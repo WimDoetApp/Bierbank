@@ -11,6 +11,8 @@ using System.Windows.Input;
 using Bierbank.Extensions;
 using System.Windows;
 using System.Windows.Controls;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Bierbank.ViewModel
 {

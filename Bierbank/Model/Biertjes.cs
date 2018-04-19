@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace Bierbank.Model
 {
@@ -17,6 +18,7 @@ namespace Bierbank.Model
         private double percentage;
         private string brouwerij;
         private string image;
+        private ImageSource displayImage;
 
         public int Id
         {
@@ -90,10 +92,22 @@ namespace Bierbank.Model
             {
                 return image;
             }
-
             set
             {
                 image = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ImageSource DisplayImage
+        {
+            get
+            {
+                return displayImage;
+            }
+            set
+            {
+                displayImage = value;
                 NotifyPropertyChanged();
             }
         }

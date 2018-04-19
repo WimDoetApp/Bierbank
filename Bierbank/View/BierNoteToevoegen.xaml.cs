@@ -25,14 +25,9 @@ namespace Bierbank.View
             InitializeComponent();
         }
 
-        private void KnopClosePopup_Click(object sender, RoutedEventArgs e)
-        {
-            Popup.IsOpen = false;
-        }
-
         private void KnopToevoegen_Click(object sender, RoutedEventArgs e)
         {
-            Popup.IsOpen = true;
+            MessageBox.Show("Note succesvol toegevoegd!", "Success!", MessageBoxButton.OK);
         }
     }
 }

@@ -169,10 +169,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\bink.jpg" />
-    <Resource Include="Images\generic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="MyDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -54,17 +54,8 @@
         <TextBox Grid.Row="3" Grid.Column="1" FontSize="15" Name="textBoxBrouwerij" Margin="20" Text="{Binding SelectedBiertje.Brouwerij, Mode=TwoWay}"/>
 
         <Label Grid.Row="4" Grid.Column="0" FontSize="15" Content="Image:"/>
-        <TextBox Grid.Row="4" Grid.Column="1" FontSize="15" Name="textBoxImage" Margin="20" Text="{Binding SelectedBiertje.Image, Mode=TwoWay}"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="Image toevoegen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding ImageUploadCommand}"/>
 
         <Button Grid.Row="5" Grid.Column="1" Name="KnopToevoegen" Content="Bier toevoegen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
-
-        <Popup Name="Popup" Width="200" Height="100" IsOpen="False" PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
-            <Border BorderBrush="Black" BorderThickness="2">
-            <StackPanel Background="{DynamicResource ToolBarKleur}">
-                <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Bier succesvol toegevoegd!"/>
-                <Button Name="KnopClosePopup" Content="OK" Style="{DynamicResource ToolBarButton}" Click="KnopClosePopup_Click"/>
-            </StackPanel>
-            </Border>
-        </Popup>
     </Grid>
 </Page>

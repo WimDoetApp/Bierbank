@@ -46,14 +46,5 @@
                   SelectedIndex="0" />
 
         <Button Grid.Row="3" Grid.Column="1" Margin="20" Name="KnopToevoegen" Content="Note toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
-
-        <Popup Name="Popup" Width="200" Height="100" IsOpen="False" PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
-            <Border BorderBrush="Black" BorderThickness="2">
-                <StackPanel Background="{DynamicResource ToolBarKleur}">
-                    <Label Foreground="{DynamicResource LetterKleur}" FontSize="15"  Content="Note succesvol toegevoegd!"/>
-                    <Button Name="KnopClosePopup" Content="OK" Style="{DynamicResource ToolBarButton}" Click="KnopClosePopup_Click"/>
-                </StackPanel>
-            </Border>
-        </Popup>
     </Grid>
 </Page>

@@ -37,7 +37,7 @@
         <TextBox Grid.Row="0" FontSize="15" Width="300" Margin="20" Text="{Binding SelectedBiertje.Naam, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Row="1" FontSize="15" Content="Soort:"/>
-        <TextBox Grid.Row="1" FontSize="15" Width="300" Margin="20" Text="{Binding SelectedBiertje.Soort, Mode=TwoWay}"/>
+        <TextBox Grid.Row="1" FontSize="15" Width="300" TextWrapping="Wrap" Margin="20" Text="{Binding SelectedBiertje.Soort, Mode=TwoWay}"/>
 
         <Label Grid.Row="2" FontSize="15" Content="Percentage:">
             <Label.ToolTip>
@@ -54,7 +54,7 @@
         <TextBox Grid.Row="3" FontSize="15" Width="300" Margin="20" Text="{Binding SelectedBiertje.Brouwerij, Mode=TwoWay}"/>
 
         <Label Grid.Row="4" FontSize="15" Content="Image:"/>
-        <TextBox Grid.Row="4" FontSize="15" Width="300" Margin="20" Text="{Binding SelectedBiertje.Image, Mode=TwoWay}"/>
+        <Button Grid.Row="4" Width="300" Content="Image veranderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding ImageUploadCommand}"/>
 
         <Label Grid.Row="2" Grid.Column="1" FontSize="15" Content="Notes bij dit bier:" VerticalAlignment="Bottom"/>
         <ListView Grid.Row="3" Grid.Column="1" Name="ListViewNotes" ItemsSource="{Binding BierNotes}" SelectedItem="{Binding SelectedBierNote}"  MouseDoubleClick="ListViewNotes_MouseDoubleClick">
@@ -71,9 +71,9 @@
             </i:Interaction.Triggers>
         </ListView>
 
-        <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding SelectedBiertje.Image, StringFormat=images/{0}}" />
+        <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding SelectedBiertje.Image}" />
 
-        <Button Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
+        <Button Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}" Click="KnopWijzigen_Click"/>
 
         <Button Grid.Row="1" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}" Click="KnopVerwijderen_Click"/>
 
