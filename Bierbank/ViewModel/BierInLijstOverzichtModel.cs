@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Bierbank.ViewModel
@@ -176,28 +177,54 @@ namespace Bierbank.ViewModel
         //lijst aanpassen
         private void UpdateLijst()
         {
-            BierDataService ds = new BierDataService();
-            ds.UpdateLijsten(SelectedLijst);
+            //invoercontrole
+            var error = false;
+
+            if (SelectedLijst.Naam == "")
+            {
+                MessageBox.Show("Naam moet ingevuld zijn!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (!error)
+            {
+                BierDataService ds = new BierDataService();
+                ds.UpdateLijsten(SelectedLijst);
+
+                MessageBox.Show("De gegevens zijn aangepast", "Naam gewijzigd!", MessageBoxButton.OK);
+
+                //refresh
+                LijstenHerladen();
+            }
         }
 
         //lijst verwijderen
         private void DeleteLijst()
         {
-            BierDataService ds = new BierDataService();
-            ds.DeleteLijsten(SelectedLijst);
+            if (MessageBox.Show("Bent u hier zeker van", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                BierDataService ds = new BierDataService();
+                ds.DeleteLijsten(SelectedLijst);
 
-            //refresh
-            LijstenHerladen();
+                //refresh
+                LijstenHerladen();
+            }
         }
 
         //bier uit lijst verwijderen
         private void DeleteBier()
         {
-            BierDataService ds = new BierDataService();
-            ds.DeleteBierInLijst(SelectedBiertje.Id, SelectedLijst.Id);
+            if(SelectedBiertje != null)
+            {
+                if (MessageBox.Show("Bent u hier zeker van", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    BierDataService ds = new BierDataService();
+                    ds.DeleteBierInLijst(SelectedBiertje.Id, SelectedLijst.Id);
 
-            //refresh
-            BiertjesInLijstHerladen();
+                    //refresh
+                    BiertjesInLijstHerladen();
+                }
+            }
         }
 
         //lijsten herladen

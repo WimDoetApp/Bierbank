@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Bierbank.ViewModel
@@ -69,11 +70,31 @@ namespace Bierbank.ViewModel
         //toevoegen biernote
         private void ToevoegenBiernote()
         {
-            BierDataService ds = new BierDataService();
-            ds.InsertBierNotes(BierNote);
+            //invoercontrole
+            var error = false;
 
-            //refresh
-            BierNotesHerladen();
+            if (BierNote.Onderwerp == null || BierNote.Onderwerp == "")
+            {
+                MessageBox.Show("Onderwerp moet ingevuld zijn!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (BierNote.Beschrijving == null ||BierNote.Beschrijving == "")
+            {
+                MessageBox.Show("Beschrijving moet ingevuld zijn!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (!error)
+            {
+                BierDataService ds = new BierDataService();
+                ds.InsertBierNotes(BierNote);
+
+                MessageBox.Show("Note succesvol toegevoegd!", "Success!", MessageBoxButton.OK);
+
+                //refresh
+                BierNotesHerladen();
+            }
         }
 
         //biernotes herladen

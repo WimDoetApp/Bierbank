@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Bierbank.ViewModel
@@ -46,11 +47,25 @@ namespace Bierbank.ViewModel
         //lijst toevoegen
         private void ToevoegenLijst()
         {
-            BierDataService ds = new BierDataService();
-            ds.InsertLijsten(Lijst);
+            //invoercontrole
+            var error = false;
 
-            //refresh
-            LijstenHerladen();
+            if (Lijst.Naam == null || Lijst.Naam == "")
+            {
+                MessageBox.Show("Lijst moet ingevuld zijn!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (!error)
+            {
+                BierDataService ds = new BierDataService();
+                ds.InsertLijsten(Lijst);
+
+                MessageBox.Show("Lijst succesvol toegevoegd!", "Success!", MessageBoxButton.OK);
+
+                //refresh
+                LijstenHerladen();
+            }
         }
 
         //lijsten herladen

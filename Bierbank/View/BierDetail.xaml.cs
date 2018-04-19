@@ -36,10 +36,5 @@ namespace Bierbank.View
             BierNoteDetail bierNoteDetail = new BierNoteDetail();
             NavigationService.Navigate(bierNoteDetail);
         }
-
-        private void KnopWijzigen_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("De gegevens zijn aangepast", "Bier gewijzigd!", MessageBoxButton.OK);
-        }
     }
 }

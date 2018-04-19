@@ -97,6 +97,7 @@ namespace Bierbank.Model
                 switch (columnName)
                 {
                     case "Onderwerp": if (string.IsNullOrEmpty(Onderwerp)) result = "Onderwerp moet ingevuld zijn!"; break;
+                    case "Beschrijving": if (string.IsNullOrEmpty(Beschrijving)) result = "Beschrijving moet ingevuld zijn!"; break;
                 };
                 return result;
             }

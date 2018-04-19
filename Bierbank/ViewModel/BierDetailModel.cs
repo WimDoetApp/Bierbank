@@ -19,6 +19,7 @@ namespace Bierbank.ViewModel
     {
         //variabelen
         private string fullPath;
+        private string savePath = "";
 
         //het biertje waarvoor we details weergeven
         private Biertjes selectedBiertje;
@@ -116,38 +117,83 @@ namespace Bierbank.ViewModel
             {
                 fullPath = fileDialog.FileName;
                 string path = System.IO.Path.GetFileName(fullPath);
-                SelectedBiertje.Image = GetDestinationPath(path, @"Images");
+                savePath = GetDestinationPath(path, @"Images");
             }
         }
 
         //bier aanpassen
         private void UpdateBiertje()
         {
-            BierDataService ds = new BierDataService();
-            ds.UpdateBiertje(SelectedBiertje);
+            //invoercontrole
+            var error = false;
 
-            //image toevoegen aan de app
-            string destinationPath = SelectedBiertje.Image;
-            if (!File.Exists(destinationPath))
+            if(SelectedBiertje.Naam == "")
             {
-                File.Copy(fullPath, destinationPath, true);
+                MessageBox.Show("Naam moet ingevuld zijn!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
             }
 
-            //refresh
-            BierenHerladen();
+            if(SelectedBiertje.Percentage <= 0)
+            {
+                MessageBox.Show("Percentage moet een komma getal zijn! Bv. 5% = 0.05", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (!error)
+            {
+                if (savePath != "")
+                {
+                    //image toevoegen aan de database
+                    SelectedBiertje.Image = savePath;
+                    string destinationPath = SelectedBiertje.Image;
+                    //als de image nog niet in de resources staat voegen we ze toe
+                    if (!File.Exists(destinationPath))
+                    {
+                        File.Copy(fullPath, destinationPath, true);
+                    }
+                }
+
+                BierDataService ds = new BierDataService();
+                ds.UpdateBiertje(SelectedBiertje);
+
+                MessageBox.Show("De gegevens zijn aangepast", "Bier gewijzigd!", MessageBoxButton.OK);
+
+                //refresh
+                BierenHerladen();
+            }
         }
 
         //bier verwijderen
         private void VerwijderBiertje()
         {
-            if (MessageBox.Show("Bent u hier zeker van", "verwijderen", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            //Bier verwijderen
+            if (MessageBox.Show("Bent u hier zeker van", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 BierDataService ds = new BierDataService();
-                ds.DeleteBiertje(SelectedBiertje);
-            }
 
-            //refresh
-            BierenHerladen();
+                //checken of er biernotes horen bij dit bier
+                foreach (BierNotes bierNote in BierNotes)
+                {
+                    if (bierNote.BierId == SelectedBiertje.Id)
+                    {
+                        if (MessageBox.Show("De bijhorende biernote " + bierNote.Onderwerp + " zal verwijdert worden! Als u op nee klikt, zal deze aan het eerste bier in de databank worden toegewezen", "verwijderen", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            ds.DeleteBierNotes(bierNote);
+                        }
+                        else
+                        {
+                            bierNote.BierId = 0;
+                            ds.UpdateBierNotes(bierNote);
+                        }
+                    }
+                }
+
+                ds.DeleteBiertje(SelectedBiertje);
+
+                //refresh
+                BierenHerladen();
+                BierNotesHerladen();
+            }
         }
 
         //bieren herladen
@@ -156,6 +202,14 @@ namespace Bierbank.ViewModel
             BierDataService ds = new BierDataService();
             ObservableCollection<Biertjes> biertjes = ds.GetBiertjes();
             Messenger.Default.Send<ObservableCollection<Biertjes>>(biertjes);
+        }
+
+        //biernotes herladen
+        private void BierNotesHerladen()
+        {
+            BierDataService ds = new BierDataService();
+            ObservableCollection<BierNotes> bierNotes = ds.GetBierNotes();
+            Messenger.Default.Send<ObservableCollection<BierNotes>>(bierNotes);
         }
 
         //pad om foto in op te slagen vinden

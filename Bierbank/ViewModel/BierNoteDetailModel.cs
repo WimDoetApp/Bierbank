@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Bierbank.ViewModel
@@ -74,21 +75,44 @@ namespace Bierbank.ViewModel
         //biernote wijzigen
         private void UpdateBierNote()
         {
-            BierDataService ds = new BierDataService();
-            ds.UpdateBierNotes(SelectedBierNote);
+            //invoercontrole
+            var error = false;
 
-            //refresh
-            BierNotesHerladen();
+            if (SelectedBierNote.Onderwerp == "")
+            {
+                MessageBox.Show("Onderwerp moet ingevuld zijn!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (SelectedBierNote.Beschrijving == "")
+            {
+                MessageBox.Show("Beschrijving moet ingevuld zijn!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (!error)
+            {
+                BierDataService ds = new BierDataService();
+                ds.UpdateBierNotes(SelectedBierNote);
+
+                MessageBox.Show("De gegevens zijn aangepast", "Note gewijzigd!", MessageBoxButton.OK);
+
+                //refresh
+                BierNotesHerladen();
+            }
         }
 
         //biernote verwijderen
         private void DeleteBierNote()
         {
-            BierDataService ds = new BierDataService();
-            ds.DeleteBierNotes(SelectedBierNote);
+            if (MessageBox.Show("Bent u hier zeker van", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                BierDataService ds = new BierDataService();
+                ds.DeleteBierNotes(SelectedBierNote);
 
-            //refresh
-            BierNotesHerladen();
+                //refresh
+                BierNotesHerladen();
+            }
         }
 
         //biernotes herladen

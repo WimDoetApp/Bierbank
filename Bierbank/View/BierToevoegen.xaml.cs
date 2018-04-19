@@ -25,10 +25,5 @@ namespace Bierbank.View
         {
             InitializeComponent();
         }
-
-        private void KnopToevoegen_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Bier succesvol toegevoegd!", "Success!", MessageBoxButton.OK);
-        }
     }
 }

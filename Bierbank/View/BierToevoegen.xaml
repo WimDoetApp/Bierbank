@@ -55,6 +55,6 @@
         <Label Grid.Row="4" Grid.Column="0" FontSize="15" Content="Image:"/>
         <Button Grid.Row="4" Grid.Column="1" Content="Image toevoegen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding ImageUploadCommand}"/>
 
-        <Button Grid.Row="5" Grid.Column="1" Name="KnopToevoegen" Content="Bier toevoegen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
+        <Button Grid.Row="5" Grid.Column="1" Name="KnopToevoegen" Content="Bier toevoegen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}"/>
     </Grid>
 </Page>

@@ -33,6 +33,6 @@
         <Label Grid.Row="0" Grid.Column="0" FontSize="15" Content="Naam:" />
         <TextBox Grid.Row="0" Grid.Column="1" Margin="20" FontSize="15" Text="{Binding Lijst.Naam, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
-        <Button Grid.Row="3" Grid.Column="1" Margin="20" Name="KnopToevoegen" Content="Lijst toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Margin="20" Name="KnopToevoegen" Content="Lijst toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}"/>
     </Grid>
 </Page>

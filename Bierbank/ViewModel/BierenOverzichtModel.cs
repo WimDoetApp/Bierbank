@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.IO;
 using System.Windows.Media.Imaging;
+using System.Windows.Data;
 
 namespace Bierbank.ViewModel
 {
@@ -73,6 +74,7 @@ namespace Bierbank.ViewModel
         private void OnBiertjesReceived(ObservableCollection<Biertjes> biertjes)
         {
             Biertjes = biertjes;
+            BierDataService ds = new BierDataService();
         }
 
         private void KoppelenCommands()

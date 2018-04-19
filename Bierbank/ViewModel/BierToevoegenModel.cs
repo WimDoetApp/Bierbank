@@ -74,26 +74,46 @@ namespace Bierbank.ViewModel
         //toevoegen bier
         private void ToevoegenBiertje()
         {
-            //als er geen image geupload is --> standaard image
-            if(SelectedBiertje.Image == null)
+            //invoercontrole
+            var error = false;
+
+            if (SelectedBiertje.Naam == null || SelectedBiertje.Naam == "")
             {
-                SelectedBiertje.Image = GetDestinationPath("generic.jpg", @"Images");
+                MessageBox.Show("Naam moet ingevuld zijn!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
             }
-            else
+
+            if (SelectedBiertje.Percentage <= 0)
             {
-                //image toevoegen aan de app
-                string destinationPath = SelectedBiertje.Image;
-                if (!File.Exists(destinationPath))
+                MessageBox.Show("Percentage moet een komma getal zijn! Bv. 5% = 0.05", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (!error)
+            {
+                //als er geen image geupload is --> standaard image
+                if (SelectedBiertje.Image == null)
                 {
-                    File.Copy(fullPath, destinationPath, true);
+                    SelectedBiertje.Image = GetDestinationPath("generic.jpg", @"Images");
                 }
+                else
+                {
+                    //image toevoegen aan de app
+                    string destinationPath = SelectedBiertje.Image;
+                    if (!File.Exists(destinationPath))
+                    {
+                        File.Copy(fullPath, destinationPath, true);
+                    }
+                }
+
+                BierDataService ds = new BierDataService();
+                ds.InsertBiertje(SelectedBiertje);
+
+                MessageBox.Show("Bier succesvol toegevoegd!", "Success!", MessageBoxButton.OK);
+
+                //refresh
+                BierenHerladen();
             }
-
-            BierDataService ds = new BierDataService();
-            ds.InsertBiertje(SelectedBiertje);
-
-            //refresh
-            BierenHerladen();
         }
 
         //pad om foto in op te slagen vinden

@@ -34,7 +34,7 @@
         <TextBox Grid.Row="0" Grid.Column="1" Margin="20" FontSize="15" Text="{Binding BierNote.Onderwerp, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Row="1" Grid.Column="0" FontSize="15" Content="Note:"/>
-        <TextBox Grid.Row="1" Grid.Column="1" FontSize="15" Margin="20" Text="{Binding BierNote.Beschrijving, Mode=TwoWay}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" FontSize="15" Margin="20" Text="{Binding BierNote.Beschrijving, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Row="2" Grid.Column="0" FontSize="15" Content="Bier:"/>
         <ComboBox Grid.Row="2" Grid.Column="1" Margin="20" 
@@ -44,6 +44,6 @@
                   SelectedValue="{Binding BierNote.BierId, Mode=TwoWay}"
                   SelectedIndex="0" />
 
-        <Button Grid.Row="3" Grid.Column="1" Margin="20" Name="KnopToevoegen" Content="Note toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}" Click="KnopToevoegen_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Margin="20" Name="KnopToevoegen" Content="Note toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding InsertCommand}"/>
     </Grid>
 </Page>
