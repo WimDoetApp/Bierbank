@@ -21,7 +21,7 @@
             <TextBox  Margin="10" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"/>
         </DockPanel>
 
-        <ListView Grid.Row="1" Margin="20" ItemsSource="{Binding Biertjes}" SelectedItem="{Binding SelectedBiertje}" MouseDoubleClick="ListView_MouseDoubleClick">
+        <ListView Grid.Row="1" Margin="20" ItemsSource="{Binding Biertjes}" SelectedItem="{Binding SelectedBiertje}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5">
@@ -48,7 +48,7 @@
             </i:Interaction.Triggers>
         </ListView>
 
-        <Button Grid.Row="2" Name="KnopToevoegen" Content="Bier toevoegen" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
+        <Button Grid.Row="2" Name="KnopToevoegen" Content="Bier toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding ToevoegenCommand}"/>
     </Grid>
 </Page>
 

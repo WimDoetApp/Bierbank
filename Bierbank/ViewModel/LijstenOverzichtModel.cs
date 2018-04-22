@@ -43,6 +43,7 @@ namespace Bierbank.ViewModel
         }
 
         public ICommand WeergevenCommand { get; set; }
+        public ICommand ToevoegenCommand { get; set; }
 
         public LijstenOverzichtModel()
         {
@@ -71,6 +72,7 @@ namespace Bierbank.ViewModel
         private void KoppelenCommands()
         {
             WeergevenCommand = new BaseCommand(BierInLijstWeergeven);
+            ToevoegenCommand = new BaseCommand(LijstToevoegenWeergeven);
         }
 
         //bieren in de gekozen lijst weergeven
@@ -79,7 +81,14 @@ namespace Bierbank.ViewModel
             if (SelectedLijst != null)
             {
                 Messenger.Default.Send<Lijsten>(SelectedLijst);
+                Messenger.Default.Send<string>("BierInLijstOverzicht.xaml");
             }
+        }
+
+        //Naar de pagina LijstToevoegen gaan
+        private void LijstToevoegenWeergeven()
+        {
+            Messenger.Default.Send<string>("LijstToevoegen.xaml");
         }
     }
 }

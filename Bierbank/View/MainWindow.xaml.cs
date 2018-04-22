@@ -41,23 +41,5 @@ namespace Bierbank.View
                 frame.NavigationService.GoForward();
             }
         }
-
-        private void KnopBierNotes_Click(object sender, RoutedEventArgs e)
-        {
-            BierNotesOverzicht bierNotesOverzicht = new BierNotesOverzicht();
-            frame.NavigationService.Navigate(bierNotesOverzicht);
-        }
-
-        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            BierenOverzicht bierenOverzicht = new BierenOverzicht();
-            frame.NavigationService.Navigate(bierenOverzicht);
-        }
-
-        private void KnopLijsten_Click(object sender, RoutedEventArgs e)
-        {
-            LijstenOverzicht lijstenOverzicht = new LijstenOverzicht();
-            frame.NavigationService.Navigate(lijstenOverzicht);
-        }
     }
 }

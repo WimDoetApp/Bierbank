@@ -24,17 +24,5 @@ namespace Bierbank.View
         {
             InitializeComponent();
         }
-
-        private void KnopToevoegen_Click(object sender, RoutedEventArgs e)
-        {
-            LijstToevoegen lijstToevoegen = new LijstToevoegen();
-            NavigationService.Navigate(lijstToevoegen);
-        }
-
-        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            BierInLijstOverzicht bierInLijstOverzicht = new BierInLijstOverzicht();
-            NavigationService.Navigate(bierInLijstOverzicht);
-        }
     }
 }

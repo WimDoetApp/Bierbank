@@ -101,6 +101,7 @@ namespace Bierbank.ViewModel
             if (SelectedBierNote != null)
             {
                 Messenger.Default.Send<BierNotes>(SelectedBierNote);
+                Messenger.Default.Send<string>("BierNoteDetail.xaml");
             }
         }
 
@@ -193,6 +194,7 @@ namespace Bierbank.ViewModel
                 //refresh
                 BierenHerladen();
                 BierNotesHerladen();
+                Messenger.Default.Send<string>("BierenOverzicht.xaml");
             }
         }
 

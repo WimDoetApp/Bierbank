@@ -112,6 +112,8 @@ namespace Bierbank.ViewModel
 
                 //refresh
                 BierNotesHerladen();
+
+                Messenger.Default.Send<string>("BierNotesOverzicht.xaml");
             }
         }
 

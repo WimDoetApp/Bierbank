@@ -24,17 +24,5 @@ namespace Bierbank.View
         {
             InitializeComponent();
         }
-
-        private void KnopVerwijderen_Click(object sender, RoutedEventArgs e)
-        {
-            BierenOverzicht bierenOverzicht = new BierenOverzicht();
-            NavigationService.Navigate(bierenOverzicht);
-        }
-
-        private void ListViewNotes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            BierNoteDetail bierNoteDetail = new BierNoteDetail();
-            NavigationService.Navigate(bierNoteDetail);
-        }
     }
 }

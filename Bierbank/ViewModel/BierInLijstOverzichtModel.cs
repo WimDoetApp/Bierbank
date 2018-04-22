@@ -161,6 +161,7 @@ namespace Bierbank.ViewModel
             if (SelectedBiertje != null)
             {
                 Messenger.Default.Send<Biertjes>(SelectedBiertje);
+                Messenger.Default.Send<string>("BierDetail.xaml");
             }
         }
 
@@ -208,6 +209,8 @@ namespace Bierbank.ViewModel
 
                 //refresh
                 LijstenHerladen();
+
+                Messenger.Default.Send<string>("LijstenOverzicht.xaml");
             }
         }
 

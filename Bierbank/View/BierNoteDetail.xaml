@@ -45,6 +45,6 @@
 
         <Button Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
 
-        <Button Grid.Row="1" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}" Click="KnopVerwijderen_Click"/>
+        <Button Grid.Row="1" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}"/>
     </Grid>
 </Page>

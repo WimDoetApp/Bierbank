@@ -9,7 +9,7 @@ namespace Bierbank
 {
     class ViewModelLocator
     {
-
+        private static MainWindowModel mainWindowModel = new MainWindowModel();
         private static BierenOverzichtModel bierenOverzichtModel = new BierenOverzichtModel();
         private static BierDetailModel bierDetailModel = new BierDetailModel();
         private static BierToevoegenModel bierToevoegenModel = new BierToevoegenModel();
@@ -19,6 +19,14 @@ namespace Bierbank
         private static LijstenOverzichtModel lijstenOverzichtModel = new LijstenOverzichtModel();
         private static LijstToevoegenModel lijstToevoegenModel = new LijstToevoegenModel();
         private static BierInLijstOverzichtModel bierInLijstOverzichtModel = new BierInLijstOverzichtModel();
+
+        public static MainWindowModel MainWindowModel
+        {
+            get
+            {
+                return mainWindowModel;
+            }
+        }
 
         public static BierenOverzichtModel BierenOverzichtModel
         {

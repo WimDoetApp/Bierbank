@@ -3,23 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        DataContext="{Binding Source={StaticResource ViewModelLocator},  Path=MainWindowModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <DockPanel>
         <ToolBar Background="{DynamicResource ToolBarKleur}" DockPanel.Dock="Top">
-            <Rectangle Width="100" RadiusX="8" RadiusY="8" MouseDown="Rectangle_MouseDown">
+            <Rectangle Width="100" RadiusX="8" RadiusY="8">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="../Images/logo.png"/>
                 </Rectangle.Fill>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding HomeCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Rectangle>
-            <!-- <Label FontSize="20" Margin="8" Padding="8" Foreground="{DynamicResource LetterKleur}" Content="Bierbank"/> -->
             <Button Name="ButtonBack" Content="Terug" Style="{DynamicResource ToolBarButton}" Click="ButtonBack_Click"/>
             <Button Name="ButtonForward" Content="Verder" Style="{DynamicResource ToolBarButton}" Click="ButtonForward_Click"/>
-            <Button Name="KnopBierNotes" Content="Bier notes" Style="{DynamicResource ToolBarButton}" Click="KnopBierNotes_Click"/>
-            <Button Name="KnopLijsten" Content="Lijsten" Style="{DynamicResource ToolBarButton}" Click="KnopLijsten_Click"/>
+            <Button Name="KnopBierNotes" Content="Bier notes" Style="{DynamicResource ToolBarButton}" Command="{Binding BierNotesCommand}"/>
+            <Button Name="KnopLijsten" Content="Lijsten" Style="{DynamicResource ToolBarButton}" Command="{Binding LijstenCommand}"/>
         </ToolBar>
 
-        <Frame Source="BierenOverzicht.xaml" Name="frame" NavigationUIVisibility="Hidden" >
+        <Frame Source="{Binding FrameSource}" Name="frame" NavigationUIVisibility="Hidden" >
         </Frame>
     </DockPanel>
 </Window>

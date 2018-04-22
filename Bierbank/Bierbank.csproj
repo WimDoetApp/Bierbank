@@ -102,6 +102,7 @@
     <Compile Include="ViewModel\BierToevoegenModel.cs" />
     <Compile Include="ViewModel\LijstenOverzichtModel.cs" />
     <Compile Include="ViewModel\LijstToevoegenModel.cs" />
+    <Compile Include="ViewModel\MainWindowModel.cs" />
     <Compile Include="View\BierDetail.xaml.cs">
       <DependentUpon>BierDetail.xaml</DependentUpon>
     </Compile>

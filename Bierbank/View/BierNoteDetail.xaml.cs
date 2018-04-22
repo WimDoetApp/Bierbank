@@ -24,11 +24,5 @@ namespace Bierbank.View
         {
             InitializeComponent();
         }
-
-        private void KnopVerwijderen_Click(object sender, RoutedEventArgs e)
-        {
-            BierNotesOverzicht bierNotesOverzicht = new BierNotesOverzicht();
-            NavigationService.Navigate(bierNotesOverzicht);
-        }
     }
 }

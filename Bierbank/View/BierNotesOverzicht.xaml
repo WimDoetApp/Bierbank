@@ -15,7 +15,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <ListView Grid.Row="0" Margin="20" ItemsSource="{Binding BierNotes}" SelectedItem="{Binding SelectedBierNote}" MouseDoubleClick="ListView_MouseDoubleClick">
+        <ListView Grid.Row="0" Margin="20" ItemsSource="{Binding BierNotes}" SelectedItem="{Binding SelectedBierNote}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
@@ -32,6 +32,6 @@
             </i:Interaction.Triggers>
         </ListView>
 
-        <Button Grid.Row="1" Name="KnopToevoegen" Content="Note toevoegen" Style="{DynamicResource ToolBarButton}" Click="KnopToevoegen_Click"/>
+        <Button Grid.Row="1" Name="KnopToevoegen" Content="Note toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding ToevoegenCommand}"/>
     </Grid>
 </Page>

@@ -19,11 +19,11 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <TextBox FontSize="15" Width="300" Margin="5" Text="{Binding SelectedLijst.Naam, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
             <Button Name="KnopAanpassen" Content="Naam wijzigen" Command="{Binding WijzigenCommand}" Style="{DynamicResource ToolBarButton}"/>
-            <Button Name="KnopVerwijderen" Content="Lijst verwijderen" Command="{Binding DeleteCommand}" Style="{DynamicResource ToolBarButton}" Click="KnopVerwijderen_Click"/>
+            <Button Name="KnopVerwijderen" Content="Lijst verwijderen" Command="{Binding DeleteCommand}" Style="{DynamicResource ToolBarButton}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <ListView Name="ListViewBieren" Width="650" ItemsSource="{Binding BiertjesInLijst}" SelectedItem="{Binding SelectedBiertje}" MouseDoubleClick="ListView_MouseDoubleClick">
+            <ListView Name="ListViewBieren" Width="650" ItemsSource="{Binding BiertjesInLijst}" SelectedItem="{Binding SelectedBiertje}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Margin="5">

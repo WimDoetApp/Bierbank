@@ -44,6 +44,7 @@ namespace Bierbank.ViewModel
         }
 
         public ICommand WeergevenCommand { get; set; }
+        public ICommand ToevoegenCommand { get; set; }
 
         public BierNotesOverzichtModel()
         {
@@ -61,6 +62,7 @@ namespace Bierbank.ViewModel
         private void KoppelenCommands()
         {
             WeergevenCommand = new BaseCommand(BierNoteDetailWeergeven);
+            ToevoegenCommand = new BaseCommand(BierNoteToevoegenWeergeven);
         }
 
         //biernotes ophalen
@@ -83,7 +85,14 @@ namespace Bierbank.ViewModel
             if (SelectedBierNote != null)
             {
                 Messenger.Default.Send<BierNotes>(SelectedBierNote);
+                Messenger.Default.Send<string>("BierNoteDetail.xaml");
             }
+        }
+
+        //naar de pagina BierNoteToevoegen gaan
+        private void BierNoteToevoegenWeergeven()
+        {
+            Messenger.Default.Send<string>("BierNoteToevoegen.xaml");
         }
 
         //Bieren aan de juiste notes linken
