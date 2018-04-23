@@ -26,6 +26,8 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600"/>
@@ -53,10 +55,10 @@
         <TextBox Grid.Row="3" FontSize="15" Width="300" Margin="20" Text="{Binding SelectedBiertje.Brouwerij, Mode=TwoWay}"/>
 
         <Label Grid.Row="4" FontSize="15" Content="Image:"/>
-        <Button Grid.Row="4" Width="300" Content="Image veranderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding ImageUploadCommand}"/>
+        <Button Grid.Row="4" Width="300" Content="Image veranderen" Margin="5" Style="{DynamicResource ToolBarButton}" Command="{Binding ImageUploadCommand}"/>
 
-        <Label Grid.Row="2" Grid.Column="1" FontSize="15" Content="Notes bij dit bier:" VerticalAlignment="Bottom"/>
-        <ListView Grid.Row="3" Grid.Column="1" Name="ListViewNotes" ItemsSource="{Binding BierNotes}" SelectedItem="{Binding SelectedBierNote}">
+        <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Top" FontSize="15" Content="Notes bij dit bier:"/>
+        <ListView Grid.Row="5" Grid.RowSpan="2" Margin="25" Grid.Column="0" Name="ListViewNotes" ItemsSource="{Binding BierNotes}" SelectedItem="{Binding SelectedBierNote}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Label FontSize="10" Content="{Binding Onderwerp}"/>
@@ -72,14 +74,10 @@
 
         <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding SelectedBiertje.Image}" />
 
-        <Button Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
+        <Button Grid.RowSpan="2" Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
 
-        <Button Grid.Row="1" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}"/>
+        <Button Grid.RowSpan="2" Grid.Row="2" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}"/>
 
-        <Rectangle Width="100" RadiusX="8" RadiusY="8" Grid.Row="4" Grid.Column="1">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="{Binding Text, ElementName=ImageName}"/>
-            </Rectangle.Fill>
-        </Rectangle>
+        <Image Grid.Row="4" Grid.RowSpan="3" Grid.Column="1" Source="{Binding Text, ElementName=ImageName}"/>
     </Grid>
 </Page>

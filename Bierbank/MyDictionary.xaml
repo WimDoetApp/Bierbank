@@ -10,7 +10,7 @@
         <Setter Property="Foreground" Value="{DynamicResource LetterKleur}"/>
     </Style>
 
-    <SolidColorBrush x:Key="ToolBarKleur" Color="Red" />
+    <SolidColorBrush x:Key="ToolBarKleur" Color="CornflowerBlue" />
     <SolidColorBrush x:Key="AchtergrondKleur" Color="Black" />
     <SolidColorBrush x:Key="LetterKleur" Color="White" />
     <SolidColorBrush x:Key="Transparant" Color="White" Opacity="0.5" />

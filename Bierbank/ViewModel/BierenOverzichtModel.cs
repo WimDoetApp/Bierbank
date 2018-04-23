@@ -130,7 +130,8 @@ namespace Bierbank.ViewModel
             {
                 foreach (Biertjes biertje in Biertjes)
                 {
-                    if (biertje.Naam.ToLower().Contains(search.ToLower()) || biertje.Naam.ToLower().StartsWith(search.ToLower()) || biertje.Naam.ToLower().EndsWith(search.ToLower()))
+                    if (biertje.Naam.ToLower().Contains(search.ToLower()) || biertje.Naam.ToLower().StartsWith(search.ToLower()) || biertje.Naam.ToLower().EndsWith(search.ToLower())
+                    || biertje.Soort.ToLower().Contains(search.ToLower()) || biertje.Soort.ToLower().StartsWith(search.ToLower()) || biertje.Soort.ToLower().EndsWith(search.ToLower()))
                     {
                         nieuweBiertjes.Add(biertje);
                     }

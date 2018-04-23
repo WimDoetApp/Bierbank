@@ -27,7 +27,7 @@
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding Image}" />
 
-                        <Rectangle Height="60" Width="50" Stroke="{DynamicResource ToolBarKleur}" StrokeThickness="2" RadiusX="8" RadiusY="8">
+                        <Rectangle Height="60" Width="50" Stroke="{DynamicResource ToolBarKleur}" StrokeThickness="2">
                             <Rectangle.Fill>
                                 <ImageBrush ImageSource="{Binding Text, ElementName=ImageName}"/>
                             </Rectangle.Fill>

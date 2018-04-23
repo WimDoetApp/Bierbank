@@ -22,14 +22,19 @@
             <Button Name="KnopVerwijderen" Content="Lijst verwijderen" Command="{Binding DeleteCommand}" Style="{DynamicResource ToolBarButton}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <ListView Name="ListViewBieren" Width="650" ItemsSource="{Binding BiertjesInLijst}" SelectedItem="{Binding SelectedBiertje}">
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <ListView Grid.Column="0" Name="ListViewBieren" ItemsSource="{Binding BiertjesInLijst}" SelectedItem="{Binding SelectedBiertje}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Margin="5">
                             <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding Image}" />
 
-                            <Rectangle Width="50" Stroke="{DynamicResource ToolBarKleur}" StrokeThickness="2" RadiusX="8" RadiusY="8">
+                            <Rectangle Width="50" Stroke="{DynamicResource ToolBarKleur}" StrokeThickness="2">
                                 <Rectangle.Fill>
                                     <ImageBrush ImageSource="{Binding Text, ElementName=ImageName}"/>
                                 </Rectangle.Fill>
@@ -50,10 +55,10 @@
                 </i:Interaction.Triggers>
             </ListView>
 
-            <Button Name="KnopBierVerwijderen" Width="110" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteBierCommand}">
-                <TextBlock TextWrapping="Wrap">Geselecteerd bier verwijderen</TextBlock>
+            <Button Grid.Column="1" Height="100" Name="KnopBierVerwijderen" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteBierCommand}">
+                Geselecteerd bier verwijderen
             </Button>
-        </StackPanel>
+        </Grid>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Label FontSize="15" Content="Bieren toevoegen aan lijst:"/>
