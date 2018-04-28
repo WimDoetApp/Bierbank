@@ -47,6 +47,7 @@ namespace Bierbank.ViewModel
         //lijst toevoegen
         private void ToevoegenLijst()
         {
+            BierDataService ds = new BierDataService();
             //invoercontrole
             var error = false;
 
@@ -56,9 +57,14 @@ namespace Bierbank.ViewModel
                 error = true;
             }
 
+            if (ds.LijstBestaat(Lijst))
+            {
+                MessageBox.Show("Lijst bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
             if (!error)
             {
-                BierDataService ds = new BierDataService();
                 ds.InsertLijsten(Lijst);
 
                 MessageBox.Show("Lijst succesvol toegevoegd!", "Success!", MessageBoxButton.OK);

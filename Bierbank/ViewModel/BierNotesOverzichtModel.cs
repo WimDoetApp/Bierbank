@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bierbank.Model;
 using Bierbank.Extensions;
 using System.Windows.Input;
 
@@ -40,6 +39,22 @@ namespace Bierbank.ViewModel
             {
                 selectedBierNote = value;
                 NotifyPropertyChanged();
+            }
+        }
+
+        //zoeken op biernote naam
+        private string search;
+        public string Search
+        {
+            get
+            {
+                return search;
+            }
+            set
+            {
+                search = value;
+                NotifyPropertyChanged();
+                GetResults(search);
             }
         }
 
@@ -111,6 +126,33 @@ namespace Bierbank.ViewModel
                     }
                 }
             }
+        }
+
+        //resultaten zoekquery ophalen
+        private void GetResults(string search)
+        {
+            BierDataService ds = new BierDataService();
+            BierNotes = ds.GetBierNotes();
+            OphalenBierenBijNotes();
+
+            ObservableCollection<BierNotes> nieuweBierNotes = new ObservableCollection<BierNotes>();
+
+            Task.Factory.StartNew(() =>
+            {
+                foreach (BierNotes bierNote in BierNotes)
+                {
+                    if (bierNote.Onderwerp.ToLower().Contains(search.ToLower()) || bierNote.Onderwerp.ToLower().StartsWith(search.ToLower()) || bierNote.Onderwerp.ToLower().EndsWith(search.ToLower())
+                    || bierNote.Biertje.Naam.ToLower().Contains(search.ToLower()) || bierNote.Biertje.Naam.ToLower().StartsWith(search.ToLower()) || bierNote.Biertje.Naam.ToLower().EndsWith(search.ToLower()))
+                    {
+                        nieuweBierNotes.Add(bierNote);
+                    }
+                }
+
+                return nieuweBierNotes;
+            }).ContinueWith(task =>
+            {
+                BierNotes = task.Result;
+            }, System.Threading.CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
         }
     }
 }

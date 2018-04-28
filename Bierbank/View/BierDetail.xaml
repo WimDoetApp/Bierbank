@@ -74,9 +74,9 @@
 
         <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding SelectedBiertje.Image}" />
 
-        <Button Grid.RowSpan="2" Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
+        <Button Grid.RowSpan="2" Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="35" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
 
-        <Button Grid.RowSpan="2" Grid.Row="2" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}"/>
+        <Button Grid.RowSpan="2" Grid.Row="2" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="35" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}"/>
 
         <Image Grid.Row="4" Grid.RowSpan="3" Grid.Column="1" Source="{Binding Text, ElementName=ImageName}"/>
     </Grid>

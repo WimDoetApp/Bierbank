@@ -75,6 +75,7 @@ namespace Bierbank.ViewModel
         //biernote wijzigen
         private void UpdateBierNote()
         {
+            BierDataService ds = new BierDataService();
             //invoercontrole
             var error = false;
 
@@ -90,9 +91,14 @@ namespace Bierbank.ViewModel
                 error = true;
             }
 
+            if (ds.BierNoteBestaat(SelectedBierNote))
+            {
+                MessageBox.Show("Note bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
             if (!error)
             {
-                BierDataService ds = new BierDataService();
                 ds.UpdateBierNotes(SelectedBierNote);
 
                 MessageBox.Show("De gegevens zijn aangepast", "Note gewijzigd!", MessageBoxButton.OK);
@@ -105,7 +111,7 @@ namespace Bierbank.ViewModel
         //biernote verwijderen
         private void DeleteBierNote()
         {
-            if (MessageBox.Show("Bent u hier zeker van", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Bent u hier zeker van?", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 BierDataService ds = new BierDataService();
                 ds.DeleteBierNotes(SelectedBierNote);

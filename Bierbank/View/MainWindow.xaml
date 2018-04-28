@@ -9,17 +9,6 @@
         Title="MainWindow" Height="600" Width="800">
     <DockPanel>
         <ToolBar Background="{DynamicResource ToolBarKleur}" DockPanel.Dock="Top">
-            <!-- <Rectangle Width="100" RadiusX="8" RadiusY="8">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="../Images/logo.png"/>
-                </Rectangle.Fill>
-
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction Command="{Binding HomeCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Rectangle> -->
             <Image Source="../Images/logo.png" Height="50">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
@@ -27,8 +16,8 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Image>
-            <Button Name="ButtonBack" Content="Terug" Style="{DynamicResource ToolBarButton}" Click="ButtonBack_Click"/>
-            <Button Name="ButtonForward" Content="Verder" Style="{DynamicResource ToolBarButton}" Click="ButtonForward_Click"/>
+            <Button Name="ButtonBack" Content="Terug" Style="{DynamicResource ToolBarButton}" Command="{Binding HerlaadCommand}" Click="ButtonBack_Click"/>
+            <Button Name="ButtonForward" Content="Verder" Style="{DynamicResource ToolBarButton}" Command="{Binding HerlaadCommand}" Click="ButtonForward_Click"/>
             <Button Name="KnopBierNotes" Content="Bier notes" Style="{DynamicResource ToolBarButton}" Command="{Binding BierNotesCommand}"/>
             <Button Name="KnopLijsten" Content="Lijsten" Style="{DynamicResource ToolBarButton}" Command="{Binding LijstenCommand}"/>
         </ToolBar>

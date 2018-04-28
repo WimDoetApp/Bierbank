@@ -14,20 +14,5 @@ namespace Bierbank.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
-        //datacontext
-        private string frameSource;
-        public string FrameSource
-        {
-            get
-            {
-                return frameSource;
-            }
-            set
-            {
-                frameSource = value;
-                NotifyPropertyChanged();
-            }
-        }
     }
 }

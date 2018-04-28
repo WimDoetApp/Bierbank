@@ -78,6 +78,25 @@ namespace Bierbank.Model
             { biertje.Id });
         }
 
+        public bool BiertjeBestaat(Biertjes biertjes)
+        {
+            string sql = "Select * from biertjes where naam = @naam";
+
+            var query = db.QueryFirstOrDefault(sql, new
+            {
+                naam = biertjes.Naam.ToLower()
+            });
+
+            if(query == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         //BierInLijst
         public ObservableCollection<BierInLijst> GetBierInLijstByLijstId(int lijstId)
         {
@@ -106,6 +125,36 @@ namespace Bierbank.Model
                 bierId = bierIdInput,
                 lijstId = lijstIdInput
             });
+        }
+
+        public void DeleteBierUitAlleLijsten(int bierIdInput)
+        {
+            string sql = "Delete bierInLijst where bierId = @bierId";
+
+            db.Execute(sql, new
+            {
+                bierId = bierIdInput,
+            });
+        }
+
+        public bool BierAlInLijst(int bierIdInput, int lijstIdInput)
+        {
+            string sql = "Select * from bierInLijst where bierId = @bierId and lijstId = @lijstId";
+
+            var query = db.QueryFirstOrDefault(sql, new
+            {
+                bierId = bierIdInput,
+                lijstId = lijstIdInput
+            });
+
+            if (query == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         //Lijsten
@@ -143,6 +192,25 @@ namespace Bierbank.Model
 
             db.Execute(sql, new
             { lijst.Id });
+        }
+
+        public bool LijstBestaat(Lijsten lijst)
+        {
+            string sql = "Select * from lijsten where naam = @naam";
+
+            var query = db.QueryFirstOrDefault(sql, new
+            {
+                naam = lijst.Naam.ToLower()
+            });
+
+            if (query == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         //Notes
@@ -191,6 +259,25 @@ namespace Bierbank.Model
 
             db.Execute(sql, new
             { note.Id });
+        }
+
+        public bool BierNoteBestaat(BierNotes note)
+        {
+            string sql = "Select * from bierNotes where onderwerp = @onderwerp";
+
+            var query = db.QueryFirstOrDefault(sql, new
+            {
+                onderwerp = note.Onderwerp.ToLower()
+            });
+
+            if (query == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

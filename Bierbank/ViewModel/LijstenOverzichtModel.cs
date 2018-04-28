@@ -42,6 +42,22 @@ namespace Bierbank.ViewModel
             }
         }
 
+        //zoeken op lijsten naam
+        private string search;
+        public string Search
+        {
+            get
+            {
+                return search;
+            }
+            set
+            {
+                search = value;
+                NotifyPropertyChanged();
+                GetResults(search);
+            }
+        }
+
         public ICommand WeergevenCommand { get; set; }
         public ICommand ToevoegenCommand { get; set; }
 
@@ -89,6 +105,31 @@ namespace Bierbank.ViewModel
         private void LijstToevoegenWeergeven()
         {
             Messenger.Default.Send<string>("LijstToevoegen.xaml");
+        }
+
+        //resultaten zoekquery ophalen
+        private void GetResults(string search)
+        {
+            BierDataService ds = new BierDataService();
+            Lijsten = ds.GetLijsten();
+
+            ObservableCollection<Lijsten> nieuweLijsten = new ObservableCollection<Lijsten>();
+
+            Task.Factory.StartNew(() =>
+            {
+                foreach (Lijsten lijst in Lijsten)
+                {
+                    if (lijst.Naam.ToLower().Contains(search.ToLower()) || lijst.Naam.ToLower().StartsWith(search.ToLower()) || lijst.Naam.ToLower().EndsWith(search.ToLower()))
+                    {
+                        nieuweLijsten.Add(lijst);
+                    }
+                }
+
+                return nieuweLijsten;
+            }).ContinueWith(task =>
+            {
+                Lijsten = task.Result;
+            }, System.Threading.CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
         }
     }
 }

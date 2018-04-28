@@ -43,8 +43,8 @@
                   SelectedValue="{Binding SelectedBierNote.BierId, Mode=TwoWay}"
                   SelectedIndex="0" />
 
-        <Button Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
+        <Button Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="35" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
 
-        <Button Grid.Row="1" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="20" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}"/>
+        <Button Grid.Row="1" Grid.Column="1" Name="KnopVerwijderen" Content="Verwijderen" Margin="35" Style="{DynamicResource ToolBarButton}" Command="{Binding DeleteCommand}"/>
     </Grid>
 </Page>

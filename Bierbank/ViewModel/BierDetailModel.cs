@@ -125,6 +125,7 @@ namespace Bierbank.ViewModel
         //bier aanpassen
         private void UpdateBiertje()
         {
+            BierDataService ds = new BierDataService();
             //invoercontrole
             var error = false;
 
@@ -137,6 +138,12 @@ namespace Bierbank.ViewModel
             if(SelectedBiertje.Percentage <= 0)
             {
                 MessageBox.Show("Percentage moet een komma getal zijn! Bv. 5% = 0.05", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (ds.BiertjeBestaat(SelectedBiertje))
+            {
+                MessageBox.Show("Dit bier bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 error = true;
             }
 
@@ -154,7 +161,6 @@ namespace Bierbank.ViewModel
                     }
                 }
 
-                BierDataService ds = new BierDataService();
                 ds.UpdateBiertje(SelectedBiertje);
 
                 MessageBox.Show("De gegevens zijn aangepast", "Bier gewijzigd!", MessageBoxButton.OK);
@@ -168,7 +174,7 @@ namespace Bierbank.ViewModel
         private void VerwijderBiertje()
         {
             //Bier verwijderen
-            if (MessageBox.Show("Bent u hier zeker van", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Bent u hier zeker van?", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 BierDataService ds = new BierDataService();
 
@@ -188,6 +194,8 @@ namespace Bierbank.ViewModel
                         }
                     }
                 }
+
+                ds.DeleteBierUitAlleLijsten(SelectedBiertje.Id);
 
                 ds.DeleteBiertje(SelectedBiertje);
 

@@ -74,6 +74,7 @@ namespace Bierbank.ViewModel
         //toevoegen bier
         private void ToevoegenBiertje()
         {
+            BierDataService ds = new BierDataService();
             //invoercontrole
             var error = false;
 
@@ -86,6 +87,12 @@ namespace Bierbank.ViewModel
             if (SelectedBiertje.Percentage <= 0)
             {
                 MessageBox.Show("Percentage moet een komma getal zijn! Bv. 5% = 0.05", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
+            if (ds.BiertjeBestaat(SelectedBiertje))
+            {
+                MessageBox.Show("Dit bier bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 error = true;
             }
 
@@ -106,7 +113,6 @@ namespace Bierbank.ViewModel
                     }
                 }
 
-                BierDataService ds = new BierDataService();
                 ds.InsertBiertje(SelectedBiertje);
 
                 MessageBox.Show("Bier succesvol toegevoegd!", "Success!", MessageBoxButton.OK);

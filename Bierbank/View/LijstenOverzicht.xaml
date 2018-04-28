@@ -11,11 +11,17 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <ListView Grid.Row="0" Margin="20" ItemsSource="{Binding Lijsten}" SelectedItem="{Binding SelectedLijst}">
+        <DockPanel Grid.Row="0">
+            <Image Margin="10" Source="/Images/search.png"></Image>
+            <TextBox  Margin="10" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+
+        <ListView Grid.Row="1" Margin="20" ItemsSource="{Binding Lijsten}" SelectedItem="{Binding SelectedLijst}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Label FontSize="15" Content="{Binding Naam}"/>
@@ -29,6 +35,6 @@
             </i:Interaction.Triggers>
         </ListView>
 
-        <Button Grid.Row="1" Name="KnopToevoegen" Content="Lijst toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding ToevoegenCommand}"/>
+        <Button Grid.Row="2" Name="KnopToevoegen" Content="Lijst toevoegen" Style="{DynamicResource ToolBarButton}" Command="{Binding ToevoegenCommand}"/>
     </Grid>
 </Page>

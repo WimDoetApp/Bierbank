@@ -169,15 +169,20 @@ namespace Bierbank.ViewModel
         private void BierAanLijstToevoegen()
         {
             BierDataService ds = new BierDataService();
-            ds.InsertBierInLijst(SelectedBierId, SelectedLijst.Id);
 
-            //refresh
-            BiertjesInLijstHerladen();
+            if (!ds.BierAlInLijst(SelectedBierId, SelectedLijst.Id))
+            {
+                ds.InsertBierInLijst(SelectedBierId, SelectedLijst.Id);
+
+                //refresh
+                BiertjesInLijstHerladen();
+            }
         }
         
         //lijst aanpassen
         private void UpdateLijst()
         {
+            BierDataService ds = new BierDataService();
             //invoercontrole
             var error = false;
 
@@ -187,9 +192,14 @@ namespace Bierbank.ViewModel
                 error = true;
             }
 
+            if (ds.LijstBestaat(SelectedLijst))
+            {
+                MessageBox.Show("Lijst bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
             if (!error)
             {
-                BierDataService ds = new BierDataService();
                 ds.UpdateLijsten(SelectedLijst);
 
                 MessageBox.Show("De gegevens zijn aangepast", "Naam gewijzigd!", MessageBoxButton.OK);
@@ -202,9 +212,17 @@ namespace Bierbank.ViewModel
         //lijst verwijderen
         private void DeleteLijst()
         {
-            if (MessageBox.Show("Bent u hier zeker van", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Bent u hier zeker van?", "verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 BierDataService ds = new BierDataService();
+
+                //controleren of er bieren in de lijst staan
+                foreach (BierInLijst bierInLijst in BierenInLijst)
+                {
+                    ds.DeleteBierInLijst(bierInLijst.BierId, bierInLijst.LijstId);
+                }
+
+                //lijst verwijderen
                 ds.DeleteLijsten(SelectedLijst);
 
                 //refresh

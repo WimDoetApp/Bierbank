@@ -70,6 +70,7 @@ namespace Bierbank.ViewModel
         //toevoegen biernote
         private void ToevoegenBiernote()
         {
+            BierDataService ds = new BierDataService();
             //invoercontrole
             var error = false;
 
@@ -85,9 +86,14 @@ namespace Bierbank.ViewModel
                 error = true;
             }
 
+            if (ds.BierNoteBestaat(BierNote))
+            {
+                MessageBox.Show("Note bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+
             if (!error)
             {
-                BierDataService ds = new BierDataService();
                 ds.InsertBierNotes(BierNote);
 
                 MessageBox.Show("Note succesvol toegevoegd!", "Success!", MessageBoxButton.OK);
