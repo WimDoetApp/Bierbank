@@ -40,8 +40,7 @@
                   ItemsSource="{Binding Biertjes}"
                   DisplayMemberPath="Naam"
                   SelectedValuePath="Id" 
-                  SelectedValue="{Binding SelectedBierNote.BierId, Mode=TwoWay}"
-                  SelectedIndex="0" />
+                  SelectedValue="{Binding SelectedBierNote.BierId, Mode=TwoWay}"/>
 
         <Button Grid.Row="0" Grid.Column="1" Name="KnopWijzigen" Content="Wijzigen" Margin="35" Style="{DynamicResource ToolBarButton}" Command="{Binding WijzigenCommand}"/>
 

@@ -13,6 +13,8 @@ namespace Bierbank.ViewModel
 {
     public class BierInLijstOverzichtModel : BaseViewModel
     {
+        private string lijstNaam = "";
+
         //geselecteerde lijst
         private Lijsten selectedLijst;
         public Lijsten SelectedLijst
@@ -128,8 +130,9 @@ namespace Bierbank.ViewModel
         private void OnLijstReceived(Lijsten lijst)
         {
             BierDataService ds = new BierDataService();
-            Biertjes = ds.GetBiertjes(); //Door deze lijn is er in de combobox niks geselecteerd
+            Biertjes = ds.GetBiertjes(); 
             SelectedLijst = lijst;
+            lijstNaam = lijst.Naam;
 
             //connectie tussen bieren en lijsten via BierInLijst
             BierenInLijst = ds.GetBierInLijstByLijstId(SelectedLijst.Id);
@@ -192,7 +195,7 @@ namespace Bierbank.ViewModel
                 error = true;
             }
 
-            if (ds.LijstBestaat(SelectedLijst))
+            if (SelectedLijst.Naam != lijstNaam && ds.LijstBestaat(SelectedLijst))
             {
                 MessageBox.Show("Lijst bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 error = true;

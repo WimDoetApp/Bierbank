@@ -21,6 +21,8 @@ namespace Bierbank.ViewModel
         private string fullPath;
         private string savePath = "";
 
+        private string bierNaam = "";
+
         //het biertje waarvoor we details weergeven
         private Biertjes selectedBiertje;
         public Biertjes SelectedBiertje
@@ -81,6 +83,7 @@ namespace Bierbank.ViewModel
         private void OnBiertjeReceived(Biertjes biertje)
         {
             SelectedBiertje = biertje;
+            bierNaam = biertje.Naam;
 
             //alle biernotes bij dit bier ophalen
             BierDataService ds = new BierDataService();
@@ -141,7 +144,7 @@ namespace Bierbank.ViewModel
                 error = true;
             }
 
-            if (ds.BiertjeBestaat(SelectedBiertje))
+            if (SelectedBiertje.Naam != bierNaam && ds.BiertjeBestaat(SelectedBiertje))
             {
                 MessageBox.Show("Dit bier bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 error = true;

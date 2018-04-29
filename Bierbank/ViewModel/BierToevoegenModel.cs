@@ -119,6 +119,8 @@ namespace Bierbank.ViewModel
 
                 //refresh
                 BierenHerladen();
+
+                SelectedBiertje = new Biertjes();
             }
         }
 

@@ -22,7 +22,7 @@ namespace Bierbank.Model
         //Biertjes
         public ObservableCollection<Biertjes> GetBiertjes()
         {
-            string sql = "Select * from biertjes";
+            string sql = "Select * from biertjes order by naam";
 
             return db.Query<Biertjes>(sql).ToObservableCollection();
         }

@@ -52,7 +52,17 @@ namespace Bierbank.ViewModel
         public BierNoteToevoegenModel()
         {
             KoppelenCommands();
-            LeesGegevens();
+            Messenger.Default.Register<ObservableCollection<Biertjes>>(this, OnBiertjesReceived);
+            //Als er via messenger geen bieren ontvangen worden, gaan we ze uit de databank halen
+            if (Biertjes == null)
+            {
+                LeesGegevens();
+            }
+        }
+
+        private void OnBiertjesReceived(ObservableCollection<Biertjes> biertjes)
+        {
+            Biertjes = biertjes;
         }
 
         private void KoppelenCommands()
@@ -100,6 +110,8 @@ namespace Bierbank.ViewModel
 
                 //refresh
                 BierNotesHerladen();
+
+                BierNote = new BierNotes();
             }
         }
 

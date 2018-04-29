@@ -114,7 +114,7 @@ namespace Bierbank.Model
                 switch (columnName)
                 {
                     case "Naam": if (string.IsNullOrEmpty(Naam)) result = "Naam moet ingevuld zijn!"; break;
-                    case "Percentage": if (Percentage <= 0) result = "Prijs moet een positief getal zijn."; break;
+                    case "Percentage": if (Percentage <= 0) result = "Percentage is fout!"; break;
                 };
                 return result;
             }

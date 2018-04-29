@@ -71,6 +71,8 @@ namespace Bierbank.ViewModel
 
                 //refresh
                 LijstenHerladen();
+
+                Lijst = new Lijsten();
             }
         }
 

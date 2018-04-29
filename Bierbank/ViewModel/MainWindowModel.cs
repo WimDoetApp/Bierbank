@@ -63,9 +63,7 @@ namespace Bierbank.ViewModel
             FrameSource = "BierNotesOverzicht.xaml";
 
             //refresh
-            BierDataService ds = new BierDataService();
-            ObservableCollection<BierNotes> bierNotes = ds.GetBierNotes();
-            Messenger.Default.Send<ObservableCollection<BierNotes>>(bierNotes);
+            AllesHerladen();
         }
 
         //naar de pagina LijstenOverzicht gaan
@@ -74,9 +72,7 @@ namespace Bierbank.ViewModel
             FrameSource = "LijstenOverzicht.xaml";
 
             //refresh
-            BierDataService ds = new BierDataService();
-            ObservableCollection<Lijsten> lijsten = ds.GetLijsten();
-            Messenger.Default.Send<ObservableCollection<Lijsten>>(lijsten);
+            AllesHerladen();
         }
 
         //naar de pagina BierenOverzicht gaan
@@ -85,9 +81,7 @@ namespace Bierbank.ViewModel
             FrameSource = "BierenOverzicht.xaml";
 
             //refresh
-            BierDataService ds = new BierDataService();
-            ObservableCollection<Biertjes> biertjes = ds.GetBiertjes();
-            Messenger.Default.Send<ObservableCollection<Biertjes>>(biertjes);
+            AllesHerladen();
         }
 
         //de tabellen refreshen

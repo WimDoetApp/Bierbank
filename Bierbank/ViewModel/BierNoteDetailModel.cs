@@ -13,6 +13,8 @@ namespace Bierbank.ViewModel
 {
     public class BierNoteDetailModel : BaseViewModel
     {
+        private string bierNoteNaam = "";
+
         //geselecteerde biernote
         private BierNotes selectedBierNote;
         public BierNotes SelectedBierNote
@@ -62,6 +64,7 @@ namespace Bierbank.ViewModel
         private void OnBierNoteReceived(BierNotes bierNote)
         {
             SelectedBierNote = bierNote;
+            bierNoteNaam = bierNote.Onderwerp;
             LeesGegevens();
         }
 
@@ -91,7 +94,7 @@ namespace Bierbank.ViewModel
                 error = true;
             }
 
-            if (ds.BierNoteBestaat(SelectedBierNote))
+            if (SelectedBierNote.Onderwerp != bierNoteNaam && ds.BierNoteBestaat(SelectedBierNote))
             {
                 MessageBox.Show("Note bestaat al!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 error = true;
