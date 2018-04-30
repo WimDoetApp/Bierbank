@@ -27,12 +27,21 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            
+
+            <TextBlock Name="ImageRoot" Text="{Binding Root}" Visibility="Collapsed"/>
+
             <ListView Grid.Column="0" Name="ListViewBieren" ItemsSource="{Binding BiertjesInLijst}" SelectedItem="{Binding SelectedBiertje}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Margin="5">
-                            <TextBlock Name="ImageName" Visibility="Collapsed" Text="{Binding Image}" />
+                            <TextBlock Name="ImageName" Visibility="Collapsed">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}{1}">
+                                        <Binding ElementName="ImageRoot" Path="Text"/>
+                                        <Binding Path="Image"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
 
                             <Rectangle Width="50" Stroke="{DynamicResource ToolBarKleur}" StrokeThickness="2">
                                 <Rectangle.Fill>

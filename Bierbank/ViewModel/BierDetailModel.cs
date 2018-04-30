@@ -19,9 +19,23 @@ namespace Bierbank.ViewModel
     {
         //variabelen
         private string fullPath;
-        private string savePath = "";
+        private bool savePath = false;
 
         private string bierNaam = "";
+
+        //images
+        private string root;
+        public string Root
+        {
+            get
+            {
+                if (root == null)
+                {
+                    root = ImageRoot;
+                }
+                return root;
+            }
+        }
 
         //het biertje waarvoor we details weergeven
         private Biertjes selectedBiertje;
@@ -121,7 +135,8 @@ namespace Bierbank.ViewModel
             {
                 fullPath = fileDialog.FileName;
                 string path = System.IO.Path.GetFileName(fullPath);
-                savePath = GetDestinationPath(path, @"Images");
+                SelectedBiertje.Image = path;
+                savePath = true;
             }
         }
 
@@ -152,16 +167,17 @@ namespace Bierbank.ViewModel
 
             if (!error)
             {
-                if (savePath != "")
+                if (savePath)
                 {
                     //image toevoegen aan de database
-                    SelectedBiertje.Image = savePath;
-                    string destinationPath = SelectedBiertje.Image;
+                    string destinationPath = ImageRoot + SelectedBiertje.Image;
                     //als de image nog niet in de resources staat voegen we ze toe
                     if (!File.Exists(destinationPath))
                     {
                         File.Copy(fullPath, destinationPath, true);
                     }
+
+                    savePath = false;
                 }
 
                 ds.UpdateBiertje(SelectedBiertje);
@@ -223,18 +239,6 @@ namespace Bierbank.ViewModel
             BierDataService ds = new BierDataService();
             ObservableCollection<BierNotes> bierNotes = ds.GetBierNotes();
             Messenger.Default.Send<ObservableCollection<BierNotes>>(bierNotes);
-        }
-
-        //pad om foto in op te slagen vinden
-        private static String GetDestinationPath(string file, string folder)
-        {
-            //root pad van de app vinden
-            String root = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-
-            //naar gekozen folder gaan
-            root = String.Format(root + @"\{0}\" + file, folder);
-
-            return root;
         }
     }
 }

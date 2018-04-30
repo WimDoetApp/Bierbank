@@ -20,6 +20,20 @@ namespace Bierbank.ViewModel
 {
     public class BierenOverzichtModel : BaseViewModel
     {
+        //images
+        private string root;
+        public string Root
+        {
+            get
+            {
+                if(root == null)
+                {
+                    root = ImageRoot;
+                }
+                return root;
+            }
+        }
+
         //alle bieren
         private ObservableCollection<Biertjes> biertjes;
         public ObservableCollection<Biertjes> Biertjes

@@ -170,7 +170,9 @@
     <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="MyDictionary.xaml">
@@ -226,9 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="splash.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />

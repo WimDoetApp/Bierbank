@@ -67,7 +67,7 @@ namespace Bierbank.ViewModel
                 BitmapImage image = new BitmapImage(new Uri(fileDialog.FileName));
                 fullPath = fileDialog.FileName;
                 string path = System.IO.Path.GetFileName(fullPath);
-                SelectedBiertje.Image = GetDestinationPath(path, @"Images");
+                SelectedBiertje.Image = path;
             }
         }
 
@@ -101,12 +101,12 @@ namespace Bierbank.ViewModel
                 //als er geen image geupload is --> standaard image
                 if (SelectedBiertje.Image == null)
                 {
-                    SelectedBiertje.Image = GetDestinationPath("generic.jpg", @"Images");
+                    SelectedBiertje.Image = "generic.jpg";
                 }
                 else
                 {
                     //image toevoegen aan de app
-                    string destinationPath = SelectedBiertje.Image;
+                    string destinationPath = ImageRoot + SelectedBiertje.Image;
                     if (!File.Exists(destinationPath))
                     {
                         File.Copy(fullPath, destinationPath, true);
@@ -122,18 +122,6 @@ namespace Bierbank.ViewModel
 
                 SelectedBiertje = new Biertjes();
             }
-        }
-
-        //pad om foto in op te slagen vinden
-        private static String GetDestinationPath(string file, string folder)
-        {
-            //root pad van de app vinden
-            String root = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-
-            //naar gekozen folder gaan
-            root = String.Format(root + @"\{0}\" + file, folder);
-
-            return root;
         }
 
         //bieren herladen

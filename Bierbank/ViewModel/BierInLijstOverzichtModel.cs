@@ -15,6 +15,20 @@ namespace Bierbank.ViewModel
     {
         private string lijstNaam = "";
 
+        //images
+        private string root;
+        public string Root
+        {
+            get
+            {
+                if (root == null)
+                {
+                    root = ImageRoot;
+                }
+                return root;
+            }
+        }
+
         //geselecteerde lijst
         private Lijsten selectedLijst;
         public Lijsten SelectedLijst
